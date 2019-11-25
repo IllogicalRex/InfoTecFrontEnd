@@ -6,34 +6,57 @@
         </li>
         <li class="breadcrumb-item active">Overview</li>
     </ol> -->
-    <div class="row">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Empresa</th>
-                    <th scope="col">Proyecto</th>
-                    <th scope="col">Número de residentes</th>
-                    <th scope="col">Carrera</th>
-                    <th scope="col">Contacto</th>
-                    <th scope="col">Correo electronico</th>
-                    <th scope="col">Teléfono</th>
-                    <th scope="col">Lugar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let project of projectBank">
-                    <td>{{project.companyName}}</td>
-                    <td>{{project.projectName}}</td>
-                    <td>{{project.residentNumber}}</td>
-                    <td>{{project.careerName}}</td>
-                    <td>{{project.contactName}}</td>
-                    <td>{{project.email}}</td>
-                    <td>{{project.numberPhone}}</td>
-                    <td>{{project.place}}</td>
-                </tr>
-            </tbody>
-        </table>
-
+    <div class="card">
+        <div class="card-header">
+            <h5> Banco de proyecto</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Proyecto</th>
+                                <th scope="col">Empresa</th>
+                                <th scope="col">Contacto</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Correo electronico</th>
+                                <th scope="col">Número de bacantes</th>
+                                <th scope="col">Lugar</th>
+                                <th scope="col">Carrera</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let project of projectBank">
+                                <td>{{project.nombre_proy}}</td>
+                                <td>{{project.nombre_emp}}</td>
+                                <td>{{project.nombre_cont}}</td>
+                                <td>{{project.tel_empre}}</td>
+                                <td>{{project.correo_empre}}</td>
+                                <td>{{project.num_vacantes}}</td>
+                                <td>{{project.direccion_empre}}</td>
+                                <td>{{project.carrera}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary">Suscribirse</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post" action="#" id="#">
+                    <div class="form-group files" (change)="event($event);">
+                        <label>Upload Your File </label>
+                        <input type="file" class="form-control" multiple="">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

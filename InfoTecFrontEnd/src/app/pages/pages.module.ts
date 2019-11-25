@@ -4,11 +4,15 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { ProjectBankComponent } from './prject-bank/project-bank.component';
+import { UserPanelComponent } from './user-panel/user-panel.component';
+import { FileManagerComponent } from './file-manager/file-manager.component';
 
 
 @NgModule({
   declarations: [
-    ProjectBankComponent
+    ProjectBankComponent,
+    UserPanelComponent,
+    FileManagerComponent
   ],
   imports: [
     CommonModule,

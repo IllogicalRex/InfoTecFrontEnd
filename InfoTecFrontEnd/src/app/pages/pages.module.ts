@@ -6,13 +6,15 @@ import { RouterModule } from '@angular/router';
 import { ProjectBankComponent } from './prject-bank/project-bank.component';
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { FileManagerComponent } from './file-manager/file-manager.component';
+import { SeguimientoComponent } from './seguimiento/seguimiento.component';
 
 
 @NgModule({
   declarations: [
     ProjectBankComponent,
     UserPanelComponent,
-    FileManagerComponent
+    FileManagerComponent,
+    SeguimientoComponent
   ],
   imports: [
     CommonModule,

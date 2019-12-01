@@ -38,6 +38,6 @@ export class ProjectBankComponent implements OnInit {
         elem.click();
         document.body.removeChild(elem);
     }
-  }
-
+  }  
+  
 }

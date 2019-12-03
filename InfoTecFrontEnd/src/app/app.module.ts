@@ -7,20 +7,25 @@ import { RouterModule } from '@angular/router';
 import { PagesModule } from './pages/pages.module';
 import { APP_ROUTES } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
+import { UserLoginComponent } from './pages/user-login/user-login.component';
+import { AuthGardService } from './services/auth-gard.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,
     SharedModule,
-    PagesModule,
     RouterModule,
+    FormsModule,
     APP_ROUTES,
-    HttpClientModule
+    PagesModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthGardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

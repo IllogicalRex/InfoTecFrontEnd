@@ -8,6 +8,8 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
 import { FileManagerComponent } from './file-manager/file-manager.component';
 import { PAGES_ROUTES } from './pages.routes';
 import { PagesComponent } from './pages.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../interceptors/TokenInterceptor.interceptor';
 
 
 @NgModule({
@@ -28,6 +30,14 @@ import { PagesComponent } from './pages.component';
     ProjectBankComponent,
     UserPanelComponent,
     FileManagerComponent
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    TokenInterceptor
   ]
 })
 export class PagesModule { }

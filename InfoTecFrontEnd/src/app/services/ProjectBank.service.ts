@@ -11,10 +11,10 @@ export class PrjectBankService {
     public URL = 'https://localhost:44344/api/';
 
 
-  constructor(public projectBankService: HttpClient) { }
+  constructor(public http: HttpClient) { }
 
   getPrjectBank() {
-    return this.projectBankService.get(this.URL + 'projectbank');
+    return this.http.get(this.URL + 'projectbank');
   }
 
 }

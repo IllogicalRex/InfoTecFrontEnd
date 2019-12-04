@@ -14,16 +14,22 @@ export class AuthGardService {
   constructor(public http: HttpClient) { }
 
   getLogin() {
-    return this.http.post(this.URL + 'login', {});
+    return this.http.post(this.URL + 'login/auth', {});
   }
 
   isLoged() {
     this.token = localStorage.getItem('token');
-    return ( this.token.length > 5 ) ? true : false;
+    console.log('entre');
+    if (this.token === null) {
+      return false;
+    } else if (this.token) {
+      return true;
+    }
+   // return ( this.token.length > 5 ) ? true : false;
   }
 
   LoginUser(user: UserModel) {
-    return this.http.post(this.URL + 'login', user)
+    return this.http.post(this.URL + 'login/auth', user)
     // tslint:disable-next-line:no-shadowed-variable
     .pipe(map(user => {
       localStorage.setItem('token', JSON.stringify(user));
@@ -31,8 +37,5 @@ export class AuthGardService {
     }));
   }
 
-  logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('token');
-  }
+  
 }

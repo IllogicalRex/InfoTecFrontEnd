@@ -1,4 +1,4 @@
 export class UserModel {
-    public UserName: string;
-    public Password: string;
+    public userName: string;
+    public password: string;
 }

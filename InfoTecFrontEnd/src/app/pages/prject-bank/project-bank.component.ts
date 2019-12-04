@@ -12,11 +12,9 @@ export class ProjectBankComponent implements OnInit {
   constructor(public projectBankService: PrjectBankService) { }
 
   ngOnInit() {
+    console.log('entre');
     this.projectBankService.getPrjectBank().subscribe((response: ProjectBankModel[]) => {
         this.projectBank = response;
-        this.projectBank.forEach(elem => {
-          elem.carrera = 'Ing en sistemas';
-        });
     });
   }
 

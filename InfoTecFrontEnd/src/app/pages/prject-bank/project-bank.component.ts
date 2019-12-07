@@ -49,22 +49,22 @@ export class ProjectBankComponent implements OnInit {
   }
 
 
-  /* event(event) {
-    console.log(event.target.files);
-    let file = event.target.files[0];
-    let x: string = String(file.name).split('.')[0];
-    let blob = new Blob([event.target.files[0]], {type: file.type});
-    console.log(blob);
-    if (window.navigator.msSaveOrOpenBlob) {
-        window.navigator.msSaveBlob(blob, x + 'test');
-    } else {
-        let elem = window.document.createElement('a');
-        elem.href = window.URL.createObjectURL(blob);
-        elem.download = x + 'test';
-        document.body.appendChild(elem);
-        elem.click();
-        document.body.removeChild(elem);
-    }
-  } */
-
+  // event(event) {
+  //   console.log(event.target.files);
+  //   let file = event.target.files[0];
+  //   let x: string = String(file.name).split('.')[0];
+  //   let blob = new Blob([event.target.files[0]], {type: file.type});
+  //   console.log(blob);
+  //   if (window.navigator.msSaveOrOpenBlob) {
+  //       window.navigator.msSaveBlob(blob, x + 'test');
+  //   } else {
+  //       let elem = window.document.createElement('a');
+  //       elem.href = window.URL.createObjectURL(blob);
+  //       elem.download = x + 'test';
+  //       document.body.appendChild(elem);
+  //       elem.click();
+  //       document.body.removeChild(elem);
+  //   }
+  // }  
+  
 }

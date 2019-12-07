@@ -10,6 +10,7 @@ import { PAGES_ROUTES } from './pages.routes';
 import { PagesComponent } from './pages.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../interceptors/TokenInterceptor.interceptor';
+import { SeguimientoComponent } from './seguimiento/seguimiento.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { TokenInterceptor } from '../interceptors/TokenInterceptor.interceptor';
     ProjectBankComponent,
     UserPanelComponent,
     FileManagerComponent,
-    PagesComponent
+    PagesComponent,
+    SeguimientoComponent
   ],
   imports: [
     CommonModule,

@@ -3,6 +3,7 @@ import { ProjectBankModel } from '../models/project-bank.model';
 import { PrjectBankService } from 'src/app/services/ProjectBank.service';
 import { ProjectModel } from '../models/project-model';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-project-bank',
@@ -13,7 +14,8 @@ export class ProjectBankComponent implements OnInit {
   projectBank: ProjectBankModel [] = [];
   projectRes: ProjectModel;
 
-  constructor(public projectBankService: PrjectBankService) { }
+  constructor(public projectBankService: PrjectBankService,
+              public router: Router) { }
 
   ngOnInit() {
     this.getProjectsBank();
@@ -40,7 +42,8 @@ export class ProjectBankComponent implements OnInit {
         '',
         'success'
       );
-      this.ngOnInit();
+      this.router.navigate(['/user']);
+     // this.ngOnInit();
     });
 
   }

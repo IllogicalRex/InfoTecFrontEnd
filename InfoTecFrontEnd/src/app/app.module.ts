@@ -6,21 +6,33 @@ import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { PagesModule } from './pages/pages.module';
 import { APP_ROUTES } from './app.routes';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserLoginComponent } from './pages/user-login/user-login.component';
+import { AuthGardService } from './services/auth-gard.service';
+import { FormsModule } from '@angular/forms';
+import { TokenInterceptor } from './interceptors/TokenInterceptor.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,
     SharedModule,
-    PagesModule,
     RouterModule,
+    FormsModule,
     APP_ROUTES,
-    HttpClientModule
+    PagesModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthGardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    TokenInterceptor],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

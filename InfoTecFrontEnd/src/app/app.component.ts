@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'InfoTecFrontEnd';
+
+  token = localStorage.getItem('token');
+
+  constructor(public router: Router) {
+    if (this.token) {
+      console.log('entre   ', this.token);
+      this.router.navigate(['/user']);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
 }

@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  tokenInfo: any;
+  user: string;
+  constructor() { 
+    this.tokenInfo = JSON.parse(localStorage.getItem('token'));
+  }
 
   ngOnInit() {
+    this.user = this.tokenInfo.user;
   }
 
 }

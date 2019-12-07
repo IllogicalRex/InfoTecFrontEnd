@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 export class AuthGardService {
 
   public URL = 'https://localhost:44344/api/';
-  token: string;
+  token: any;
 
   constructor(public http: HttpClient) { }
 
@@ -18,24 +18,39 @@ export class AuthGardService {
   }
 
   isLoged() {
-    this.token = localStorage.getItem('token');
-    console.log('entre');
-    if (this.token === null) {
+    let tokenInfo = JSON.parse(localStorage.getItem('token'));
+    if (tokenInfo.token === null || tokenInfo.token === 'Unauthorized' ) {
       return false;
-    } else if (this.token) {
+    } else if (tokenInfo.token !== 'Unauthorized') {
       return true;
     }
    // return ( this.token.length > 5 ) ? true : false;
   }
 
-  LoginUser(user: UserModel) {
-    return this.http.post(this.URL + 'login/auth', user)
+  LoginUserAlumn(user: UserModel) {
+    return this.http.post(this.URL + 'login/authalumn', user)
     // tslint:disable-next-line:no-shadowed-variable
     .pipe(map(user => {
+      console.log('asdfasdfdf', user);
       localStorage.setItem('token', JSON.stringify(user));
-      return user;
     }));
   }
 
-  
+  LoginUserAsesor(user: UserModel) {
+    return this.http.post(this.URL + 'login/authasesor', user)
+    // tslint:disable-next-line:no-shadowed-variable
+    .pipe(map(user => {
+      console.log('asdfasdfdf', user);
+      localStorage.setItem('token', JSON.stringify(user));
+    }));
+  }
+
+  LoginUserEncargado(user: UserModel) {
+    return this.http.post(this.URL + 'login/authencargado', user)
+    // tslint:disable-next-line:no-shadowed-variable
+    .pipe(map(user => {
+      console.log('asdfasdfdf', user);
+      localStorage.setItem('token', JSON.stringify(user));
+    }));
+  }
 }

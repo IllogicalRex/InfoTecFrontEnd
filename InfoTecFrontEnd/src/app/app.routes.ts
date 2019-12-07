@@ -6,7 +6,8 @@ import { UserLoginComponent } from './pages/user-login/user-login.component';
 import { PagesModule } from './pages/pages.module';
 
 const appRoutes: Routes = [
-      {path: 'login', component: UserLoginComponent }
+      {path: 'login', component: UserLoginComponent },
+      {path: '**', component: UserLoginComponent }
 ];
 
 

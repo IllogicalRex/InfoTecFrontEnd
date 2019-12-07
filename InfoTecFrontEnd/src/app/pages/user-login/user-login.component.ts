@@ -13,22 +13,48 @@ import { Router } from '@angular/router';
 export class UserLoginComponent implements OnInit {
 
   public user: UserModel = new UserModel();
-
+  public error: string;
+  isUnauthorized: boolean;
+  userType: string;
+  tokenInfo: any;
   constructor(public userLogin: AuthGardService,  public router: Router) {
+    this.tokenInfo = JSON.parse(localStorage.getItem('token'));
+    this.userType = 'alumno';
    }
 
   ngOnInit() {
   }
 
   Login() {
-    this.userLogin.LoginUser(this.user).subscribe((res: any) => {
-      console.log('Logeado...', res);
-      this.router.navigate(['/user']);
-    });
+    console.log('token2', this.tokenInfo);
+    if ( this.userType === 'alumno' ) {
+      console.log('entre alumno', this.tokenInfo);
+      this.userLogin.LoginUserAlumn(this.user).subscribe((res: any) => {
+        this.router.navigate(['/user']);
+        return;
+      });
+    } else if ( this.userType === 'asesor' ) {
+      console.log('entre Asesor', this.tokenInfo);
+      this.userLogin.LoginUserAsesor(this.user).subscribe((res: any) => {
+        this.router.navigate(['/user']);
+        return;
+      });
+    } else if ( this.userType === 'encargado' ) {
+      this.userLogin.LoginUserEncargado(this.user).subscribe((res: any) => {
+        this.router.navigate(['/user']);
+        return;
+      });
+    }
+    if (this.tokenInfo.token === 'Unauthorized') {
+      this.isUnauthorized = true;
+    } else {
+      this.isUnauthorized = false;
+    }
 
   }
 
   typeUser(event) {
+    this.userType = event;
     console.log(event);
   }
 }

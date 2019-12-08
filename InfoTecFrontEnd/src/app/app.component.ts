@@ -8,16 +8,13 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'InfoTecFrontEnd';
-
   token: any;
-
+  
   constructor(public router: Router) {
-    localStorage.setItem('token', JSON.stringify({ token: 'Unauthorized', user: '', userName: '' }));
-
     this.token = JSON.parse(localStorage.getItem('token'));
-
-    this.token.token = 'Unauthorized';
-    if (this.token.token.length > 15) {
+    if (!this.token) {
+      localStorage.setItem('token', JSON.stringify({ token: 'Unauthorized', user: '', userName: '' }));
+    } else if (this.token.token.length > 15) {
       console.log('entre   ', this.token);
       this.router.navigate(['/user']);
     } else {

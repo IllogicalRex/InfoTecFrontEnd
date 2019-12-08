@@ -21,6 +21,9 @@ export class SeguimientoComponent implements OnInit {
               public fileService: FileUploadService) { 
               }
   ngOnInit() {
+
+    let id= JSON.parse(localStorage.getItem("token"));
+   this.getDocument(id.userName);
   }
   //maneja el tipo de archivo
   handleFileInput(files: any) {  
@@ -41,7 +44,7 @@ export class SeguimientoComponent implements OnInit {
     }
   }
 
-  uploadFiles() {
+  uploadFiles(tipo: number) {
     console.log('archivo  ',  this.user.userName);
     let DocName = String(this.user.userName + '-' + this.loadedFile[0].name);
     let formData: FormData = new FormData(); 
@@ -50,7 +53,7 @@ export class SeguimientoComponent implements OnInit {
     this.onUploadFiles();
     let docuemnt = {
       AlumnId: this.user.userName,
-      Idtipo: 1,
+      Idtipo: tipo,
       url: DocName,
       fecha: new Date(),
       ComentarioAsesor: '',
@@ -60,6 +63,11 @@ export class SeguimientoComponent implements OnInit {
       idadmin: '15327486'
     };
     this.blobStorageService.addFileToDataBase(docuemnt).subscribe();
+  }
+
+  getDocument(numControl){
+    console.log(numControl)
+    this.blobStorageService.getDocument(numControl).subscribe();
   }
 
 }

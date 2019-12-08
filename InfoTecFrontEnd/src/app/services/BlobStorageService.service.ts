@@ -60,4 +60,8 @@ export class BlobStorageService {
   addFileToDataBase(document: any) {
     return this.blobStorageService.post(this.URL + 'document', document)
   }
+  getDocument(numControl: any) {
+    return this.blobStorageService.get(this.URL + 'document/', numControl)
+  }
+ 
 }

@@ -55,9 +55,9 @@ export class BlobStorageService {
 //elimina un archivo
   deleteFile(fileName: string) {  
     return this.blobStorageService.get(this.URL + 'blobstorage/deletefile/' + fileName)
-      
-      
-  
+  }
 
+  addFileToDataBase(document: any) {
+    return this.blobStorageService.post(this.URL + 'document', document)
   }
 }

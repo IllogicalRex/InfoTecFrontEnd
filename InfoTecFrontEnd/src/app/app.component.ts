@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'InfoTecFrontEnd';
 
-  token = localStorage.getItem('token');
+  token = JSON.parse(localStorage.getItem('token'));
 
   constructor(public router: Router) {
-    if (this.token) {
+    if (this.token.token.length > 15) {
       console.log('entre   ', this.token);
       this.router.navigate(['/user']);
     } else {

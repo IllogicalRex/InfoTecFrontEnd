@@ -11,6 +11,7 @@ import { PagesComponent } from './pages.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../interceptors/TokenInterceptor.interceptor';
 import { SeguimientoComponent } from './seguimiento/seguimiento.component';
+import { FileAsesorManagerComponent } from './asesor/file-manager/file-manager.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SeguimientoComponent } from './seguimiento/seguimiento.component';
     UserPanelComponent,
     FileManagerComponent,
     PagesComponent,
-    SeguimientoComponent
+    SeguimientoComponent,
+    FileAsesorManagerComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { SeguimientoComponent } from './seguimiento/seguimiento.component';
   exports: [
     ProjectBankComponent,
     UserPanelComponent,
-    FileManagerComponent
+    FileManagerComponent,
+    FileAsesorManagerComponent
   ],
   providers: [
     {

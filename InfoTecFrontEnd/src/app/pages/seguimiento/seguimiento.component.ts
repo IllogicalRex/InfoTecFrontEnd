@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { BlobStorageService } from '../../services/BlobStorageService.service';
+import { FileUploadService } from 'src/app/services/file-upload.service';
 
 @Component({
   selector: 'app-seguimiento',
@@ -8,7 +9,8 @@ import { BlobStorageService } from '../../services/BlobStorageService.service';
 })
 export class SeguimientoComponent implements OnInit {
 
-  constructor(public blobStorageService: BlobStorageService) { }
+  constructor(public blobStorageService: BlobStorageService,
+              public fileService: FileUploadService) { }
   files: string[] = [];  
   fileToUpload: FormData;  
   fileUpload: any;  
@@ -19,10 +21,11 @@ export class SeguimientoComponent implements OnInit {
   }
   //maneja el tipo de archivo
   handleFileInput(files: any) {  
+    console.log(files[0].name); 
     let formData: FormData = new FormData();  
-    formData.append("asset", files[0], files[0].name);  
-    this.fileToUpload = formData;  
-    this.onUploadFiles();  
+    formData.append('asset', files[0], files[0].name);  
+    this.fileToUpload = formData; 
+    this.onUploadFiles();
   }  
   // sube el archivo
   onUploadFiles() {  
@@ -33,12 +36,16 @@ export class SeguimientoComponent implements OnInit {
     if (this.fileToUpload == undefined) {  
       this.fileUpoadInitiated = false;  
       return false;  
-    }  
-    else {  
+    } else {
       return  this.blobStorageService.insertFile(this.fileToUpload).subscribe(res=>res);
-  
-    }  
-  }  
+    }
+  }
 
-  
+  uploadFile() {
+    this.fileService.uploadService(this.fileToUpload).subscribe((res: any) => {
+      console.log(res);
+    });
+  }
+
+
 }

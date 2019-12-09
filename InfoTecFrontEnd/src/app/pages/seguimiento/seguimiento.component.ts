@@ -33,6 +33,9 @@ export class SeguimientoComponent implements OnInit {
 
   constructor(public blobStorageService: BlobStorageService,
               public fileService: FileUploadService) { 
+                this.documents={
+                  idtipo:0
+                }
               }
   ngOnInit() {
 
@@ -83,6 +86,7 @@ export class SeguimientoComponent implements OnInit {
           icon: 'success',
           confirmButtonText: 'Ok'
         })
+        this.getDocument(document.AlumnId)
            return res;
     });
   }
@@ -91,18 +95,11 @@ export class SeguimientoComponent implements OnInit {
     this.blobStorageService.getDocument(numControl).subscribe((res:any)=>{
         res.map((res: any)=>{
           if(res.idEstatus!=3){
-            if(res.idtipo===1){
+            if(res.idtipo){
               console.log(res)
               this.documents=res;
             }
-            if(res.idtipo===2){
-              console.log(res)
-              this.documents=res;
-            }
-            if(res.idtipo===4){
-              console.log(res)
-              this.documents=res;
-            }
+            
           }
           if(res.idEstatus==3){
             this.documents={

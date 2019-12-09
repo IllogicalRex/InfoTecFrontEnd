@@ -6,6 +6,7 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { SeguimientoComponent } from './seguimiento/seguimiento.component';
 import { FileAsesorManagerComponent } from './asesor/file-manager/file-manager.component';
+import { EncargadoViewComponent } from './encargado-view/encargado-view.component';
 
 
 
@@ -19,7 +20,8 @@ const pagesRoutes: Routes = [
             {path: 'user', component: UserPanelComponent, canActivate: [AuthGuard], data: {titulo: 'Panel de usuario'}  },
             {path: 'file', component: FileManagerComponent, canActivate: [AuthGuard], data: {titulo: 'Archivos'} },
             {path: 'seguimiento', component: SeguimientoComponent, canActivate: [AuthGuard], data: {titulo: 'Seguimiento'} },
-            {path: 'fileasesor', component: FileAsesorManagerComponent, canActivate: [AuthGuard], data: {titulo: 'Gestor archivos asesor'} }
+            {path: 'fileasesor', component: FileAsesorManagerComponent, canActivate: [AuthGuard], data: {titulo: 'Gestor archivos asesor'} },
+            {path: 'fileencargado', component: EncargadoViewComponent, canActivate: [AuthGuard], data: {titulo: 'Gestor archivos encargado'} }
         ]
     },
 ];

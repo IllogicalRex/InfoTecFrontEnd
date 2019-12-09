@@ -25,15 +25,7 @@ export class BlobStorageService {
   //agrega un archivo
   insertFile(fileToUpload: any){
     return this.blobStorageService.post(this.URL + 'blobstorage/insertfile', fileToUpload)
-    .pipe(map((res: any)=>{
-      Swal.fire({
-        title: 'Archivo enviado!',
-        text: '',
-        icon: 'success',
-        confirmButtonText: 'Ok'
-      })
-         return res;
-    }));
+    
   }
 //descarga un archivo
   downloadFile(fileName: any) {  
@@ -58,6 +50,18 @@ export class BlobStorageService {
   }
 
   addFileToDataBase(document: any) {
-    return this.blobStorageService.post(this.URL + 'document', document)
+    console.log(document)
+    return this.blobStorageService.post(this.URL + 'document', document);
   }
+  updateFileToDataBase(document: any) {
+    return this.blobStorageService.put(this.URL + 'document', document);
+  }
+  getDocument(numControl: any) {
+    return this.blobStorageService.get(this.URL + 'document/alumno/'+ numControl)
+  }
+  getDocumentoAlumnoAsesor(id: any) {
+    return this.blobStorageService.get(this.URL + 'document/asesor/'+ id)
+  }
+ 
+ 
 }

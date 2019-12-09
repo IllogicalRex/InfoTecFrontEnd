@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../interceptors/TokenInterceptor.interceptor';
 import { SeguimientoComponent } from './seguimiento/seguimiento.component';
 import { FileAsesorManagerComponent } from './asesor/file-manager/file-manager.component';
+import { CreateProjectComponent } from './functionalities/create-project/create-project.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { FileAsesorManagerComponent } from './asesor/file-manager/file-manager.c
     FileManagerComponent,
     PagesComponent,
     SeguimientoComponent,
-    FileAsesorManagerComponent
+    FileAsesorManagerComponent,
+    CreateProjectComponent
   ],
   imports: [
     CommonModule,

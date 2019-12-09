@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <!-- <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Overview</li>
+    </ol> -->
+    <div class="card ">
+
+        <div class="card-header rounded">
+            <h4> <strong>Alta de proyecto</strong> </h4>
+        </div>
+        <div class="card-body">
+            <div class="card-body">
+                <form #f="ngForm" ngNativeValidate (ngSubmit)="SaveResource(f.value)">
+                    <div class="form-group">
+
+                        <label class="font-label">Tipo de proyecto</label>
+                        <input [(ngModel)]="project.tipo_proyecto" name="name" type="text" class="form-control font-input" placeholder="Nombre de recurso" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="font-label">Nombre de proyecto</label>
+                        <input [(ngModel)]="project.nombre_proy" name="lastname" type="text" class="form-control font-input" placeholder="Nombre de recurso" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="font-label">Empresa</label>
+                        <input [(ngModel)]="project.nombre_emp" name="lastname" type="text" class="form-control font-input" placeholder="Nombre de recurso" required>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label class="font-label">Nombre del contacto</label>
+                        <input [(ngModel)]="project.nombre_cont" name="lastname" type="text" class="form-control font-input" placeholder="Nombre de recurso" required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="font-label">Número telefonico de la empresa</label>
+                        <input [(ngModel)]="project.tel_empre" name="costo" class="form-control font-input" placeholder="Correo" required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="font-label">Correo de la empresa</label>
+                        <input [(ngModel)]="project.correo_empre" name="costo" class="form-control font-input" placeholder="Correo" required>
+
+
+                    </div>
+                    <div class="form-group">
+
+                        <label class="font-label">Numero de vacantes</label>
+                        <input [(ngModel)]="project.num_vacantes" name="lastname" type="text" class="form-control font-input" placeholder="Nombre de recurso" required>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label class="font-label">Dirección de la empresa</label>
+                        <input [(ngModel)]="project.direccion_empre" name="lastname" type="text" class="form-control font-input" placeholder="Nombre de recurso" required>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label class="font-label">Carrera</label>
+                        <input [(ngModel)]="project.carrera" name="lastname" type="text" class="form-control font-input" placeholder="Nombre de recurso" required>
+
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary btn-dark  button-space font-button">Guardar</button> <span class="tab"></span>
+                        <button type="submit" class="btn btn-danger btn-dark  button-space font-button">Cancelar</button>
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

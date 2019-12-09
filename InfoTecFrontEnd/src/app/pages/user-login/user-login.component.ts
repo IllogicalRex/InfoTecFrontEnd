@@ -14,7 +14,7 @@ export class UserLoginComponent implements OnInit {
 
   public user: UserModel = new UserModel();
   public error: string;
-  isUnauthorized: boolean;
+  isUnauthorized = false;
   userType: string;
   tokenInfo: any;
   constructor(public userLogin: AuthGardService,  public router: Router) {
@@ -30,29 +30,36 @@ export class UserLoginComponent implements OnInit {
     if ( this.userType === 'alumno' ) {
       console.log('entre alumno', this.tokenInfo);
       this.userLogin.LoginUserAlumn(this.user).subscribe((res: any) => {
+        this.isAutenticated();
         this.router.navigate(['/user']);
         return;
       });
     } else if ( this.userType === 'asesor' ) {
       console.log('entre Asesor', this.tokenInfo);
       this.userLogin.LoginUserAsesor(this.user).subscribe((res: any) => {
+        this.isAutenticated();
         this.router.navigate(['/user']);
         return;
       });
     } else if ( this.userType === 'encargado' ) {
       this.userLogin.LoginUserEncargado(this.user).subscribe((res: any) => {
+        this.isAutenticated();
         this.router.navigate(['/user']);
         return;
       });
     }
-    if (this.tokenInfo.token === 'Unauthorized') {
-      this.isUnauthorized = true;
-    } else {
-      this.isUnauthorized = false;
-    }
 
   }
 
+  isAutenticated() {
+    /* if (this.tokenInfo.token !== 'Unauthorized' && this.tokenInfo.token.length > 15) { */
+      if (!this.tokenInfo.userName) {
+      this.isUnauthorized = true;
+    } else {
+      this.isUnauthorized = false;
+      return;
+    }
+  }
   typeUser(event) {
     this.userType = event;
     console.log(event);

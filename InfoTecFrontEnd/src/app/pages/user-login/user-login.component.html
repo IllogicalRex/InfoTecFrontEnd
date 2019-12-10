@@ -1,7 +1,8 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <div class="card center-card" style="width: 400px; margin-top: 130px;">
+            <div class="card center-card shadow p-3 mb-5 bg-white rounded align-content-center" style="width: 400px; margin-top: 50px; border-color: white;">
+                <img class="card-img-top mx-auto " style="width: 200px; height: 200px;" src="../../../assets/images/imageLogin.png" alt="Card image cap">
                 <div class="card-body">
 
                     <div *ngIf="isUnauthorized" class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -12,12 +13,12 @@
                     <form id="form1" name="form1" #form="ngForm">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Usuario</label>
-                            <input type="text" [(ngModel)]="user.userName" name="userName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input type="text" [(ngModel)]="user.userName" placeholder="Introduce número de control" name="userName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                             <!--  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Contraseña</label>
-                            <input type="password" [(ngModel)]="user.password" name="password" class="form-control" id="exampleInputPassword1">
+                            <input type="password" [(ngModel)]="user.password" placeholder="Introduce tu contraseña" name="password" class="form-control" id="exampleInputPassword1">
                         </div>
                         <div class="form-group">
                             <label for="inputState">Tipo usuario</label>

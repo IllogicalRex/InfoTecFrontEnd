@@ -6,59 +6,66 @@
         </li>
         <li class="breadcrumb-item active">Overview</li>
     </ol> -->
-    <div class="card">
-        <div class="card-header">
+    <div class="card shadow" style="border-color: transparent; min-height: 80%;">
+
+        <div class="card-body">
             <div class="row">
-                <div class="col-sm">
+                <!-- <div class="col-sm">
                     <h5> Banco de proyecto</h5>
 
-                </div>
+                </div> -->
                 <div *ngIf="config.user === 'Encargado de residencias'" class="col-sm text-right">
                     <button type="button" class="btn btn-secondary" [routerLink]="['/createprojectobp']">Dar de alta Proyecto</button>
                 </div>
 
             </div>
-        </div>
-        <div class="card-body">
             <div class="row">
                 <div class="col-sm">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Proyecto</th>
-                                <th scope="col">Empresa</th>
-                                <th scope="col">Contacto</th>
-                                <th scope="col">Teléfono</th>
-                                <th scope="col">Correo electronico</th>
-                                <th scope="col">Número de bacantes</th>
-                                <th scope="col">Lugar</th>
-                                <th scope="col">Carrera</th>
-                                <th scope="col" *ngIf="config.user === 'Alumno'"></th>
-                            </tr>
-                        </thead>
+                    <div class="card card-cascade narrower" style="border-color: transparent;">
 
-                        <tbody>
-                            <tr *ngFor="let project of projectBank">
-                                <td>{{project.nombre_proy}}</td>
-                                <td>{{project.nombre_emp}}</td>
-                                <td>{{project.nombre_cont}}</td>
-                                <td>{{project.tel_empre}}</td>
-                                <td>{{project.correo_empre}}</td>
-                                <td>{{project.num_vacantes}}</td>
-                                <td>{{project.direccion_empre}}</td>
-                                <td>{{project.carrera}}</td>
-                                <td *ngIf="config.user === 'Alumno'">
-                                    <button *ngIf="isEnabled" type="button" class="btn btn-secondary" (click)="projectSubscription(project)">Suscribirse</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p></p>
-                    <div *ngIf="spiner" class="d-flex justify-content-center">
-                        <div class="spinner-grow" style="width: 100px; height: 100px; float:inherit" role="status">
-                            <span class="sr-only">Loading...</span>
+                        <!--Card image-->
+                        <h3 class="text-center">Banco de proyectos</h3>
+                        <br>
+                        <div class="table-wrapper" style="min-height: 500px;">
+                            <!--Table-->
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Proyecto</th>
+                                        <th scope="col">Empresa</th>
+                                        <th scope="col">Contacto</th>
+                                        <th scope="col">Teléfono</th>
+                                        <th scope="col">Correo electronico</th>
+                                        <th scope="col">Número de bacantes</th>
+                                        <th scope="col">Lugar</th>
+                                        <th scope="col">Carrera</th>
+                                        <th scope="col" *ngIf="config.user === 'Alumno'"></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let project of projectBank">
+                                        <td>{{project.nombre_proy}}</td>
+                                        <td>{{project.nombre_emp}}</td>
+                                        <td>{{project.nombre_cont}}</td>
+                                        <td>{{project.tel_empre}}</td>
+                                        <td>{{project.correo_empre}}</td>
+                                        <td>{{project.num_vacantes}}</td>
+                                        <td>{{project.direccion_empre}}</td>
+                                        <td>{{project.carrera}}</td>
+                                        <td *ngIf="config.user === 'Alumno'">
+                                            <button *ngIf="isEnabled" type="button" class="btn btn-secondary" (click)="projectSubscription(project)">Suscribirse</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div *ngIf="spiner" class="d-flex justify-content-center">
+                                <div class="spinner-grow" style="width: 100px; height: 100px; float:inherit" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
                         </div>
+                        <p></p>
                     </div>
                 </div>
             </div>
-        </div>

@@ -31,7 +31,7 @@ export class UserPanelComponent implements OnInit {
     } else if (this.config.user === 'Asesor') {
       this.getAsesor();
     } else if (this.config.user === 'Encargado de residencias') {
-      // this.getEncargado();
+      this.getEncargado();
     }
   }
 
@@ -70,7 +70,7 @@ export class UserPanelComponent implements OnInit {
   getEncargado() {
     this.spiner = true;
     this.spiner = false;
-    this.encargadoService.getEncargado(String(this.config.userName)).subscribe((res: EncargadoModel) => {
+    /* this.encargadoService.getEncargado(String(this.config.userName)).subscribe((res: EncargadoModel) => {
       if (res) {
         this.encargado = res;
         localStorage.setItem('token', JSON.stringify({
@@ -80,7 +80,7 @@ export class UserPanelComponent implements OnInit {
            subscriptionStatus: ''
           }));
       }
-    });
+    }); */
   }
 
 }

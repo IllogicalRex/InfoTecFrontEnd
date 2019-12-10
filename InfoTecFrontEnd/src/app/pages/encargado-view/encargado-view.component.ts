@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
   // styleUrls: ['./encargado-view.component.css']
 })
 export class EncargadoViewComponent implements OnInit {
+  
 
   constructor(public blobStorageService: BlobStorageService) { }
   files: string[] = [];  
@@ -21,6 +22,8 @@ export class EncargadoViewComponent implements OnInit {
   tipo:any;
   estado:any;
   extn:any;
+  comentarioEncargado: string="";
+  comentarioAsesor: string="";
 
   encargado = JSON.parse(localStorage.getItem('token'));
 
@@ -61,7 +64,7 @@ export class EncargadoViewComponent implements OnInit {
     console.log(files[0].name);
     this.loadedFile = files;
   }  
-  uploadFiles(tipo: number, estado:number,comentarioAsesor,comentarioAdmRes,asesor,admin) {
+  uploadFiles(tipo: number, estado:number,comentarioAsesor:string,comentarioAdmRes:string,asesor,admin) {
     let formData: FormData = new FormData(); 
     let DocName = String(this.loadedFile[0].name);
     formData.append('asset', this.loadedFile[0], DocName);
@@ -77,7 +80,7 @@ export class EncargadoViewComponent implements OnInit {
           fecha: res.fecha,
           ComentarioAsesor: res.comentarioAsesor,
           idEstatus: estado,
-          ComentarioAdmRes: res.comentarioAdmRes,
+          ComentarioAdmRes: comentarioAdmRes,
           Idasesor: res.idasesor,
           idadmin: this.encargado.userName
         };
@@ -127,5 +130,13 @@ export class EncargadoViewComponent implements OnInit {
   setEstado(value){
     this.estado=value;
   }
+  setComentarioEncargado(value){
+    console.log(value)
+    this.comentarioEncargado=value;
+  }
+  setComentarioAsesor(value){
+    this.comentarioAsesor=value;
+  }
+
 
 }

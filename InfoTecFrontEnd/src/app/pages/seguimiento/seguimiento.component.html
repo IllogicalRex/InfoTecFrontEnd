@@ -6,9 +6,9 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-            <!--  -->
+            <!-- PASO 1 -->
                     <div class="form-inline" *ngIf="statusAceptacion==documents.idtipo; else AceptacionFalse">
-                        <label >Paso 1: Entrega de carta de Aceptacion</label>
+                        <label > Entrega de carta de Aceptacion</label>
                         <div class="form-group mb-2">
                         
                             <div class="form-group files" (change)="handleFileInput($event.target.files)">
@@ -17,10 +17,7 @@
                                     Subir documento
                                 </button>
                             </div>
-
-                            <div *ngIf="porAprobar==documents.idEstatus" class="alert alert-warning" role="alert">
-                                Archivo por enviar
-                             </div>
+                         
                                 <div *ngIf="enProceso==documents.idEstatus" class="alert alert-warning" role="alert">
                                     En proceso.
                                 </div>
@@ -28,37 +25,53 @@
                                    Su archivo ha sido rechazado, favor de verificar.
                                 </div>
                                
-                               
                         </div>
                     </div>
 
                     <ng-template #AceptacionFalse>
-                            <fieldset disabled>
-                        <div class="form-inline ">
-                            <label >Paso 1: Entrega de carta de Aceptacion</label>
-                            <div class="form-group mb-2">
-                            
-                                <div class="form-group files" (change)="handleFileInput($event.target.files)">
-                                    <input type="file" class="form-control" disable>
-                                    <button (click)="uploadFiles(1,2);" disable>
-                                        Subir documento
-                                    </button>
+                            <div class="form-inline" *ngIf="documents.idtipo==0">
+                                    <label >Entrega de carta de Aceptacion</label>
+                                    <div class="form-group mb-2">
+                                    
+                                        <div class="form-group files" (change)="handleFileInput($event.target.files)">
+                                            <input type="file" class="form-control" disable>
+                                            <button (click)="uploadFiles(1,2);" disable>
+                                                Subir documento
+                                            </button>
+                                        </div>
+                                        
+                                        <div *ngIf="documents.idtipo<statusAceptacion" class="alert alert-danger" role="alert">
+                                            No se ha enviado.
+                                         </div>
+                                           
+                                    </div>
                                 </div>
-                                
-                                <div *ngIf="documents.idtipo>statusAceptacion" class="alert alert-success" role="alert">
-                                    Aprovado!
+                            <fieldset *ngIf="documents.idtipo!=0" disabled>
+                                <div class="form-inline ">
+                                    <label >Entrega de carta de Aceptacion</label>
+                                    <div class="form-group mb-2">
+                                    
+                                        <div class="form-group files" (change)="handleFileInput($event.target.files)">
+                                            <input type="file" class="form-control" disable>
+                                            <button (click)="uploadFiles(1,2);" disable>
+                                                Subir documento
+                                            </button>
+                                        </div>
+                                        
+                                        <div *ngIf="documents.idtipo>statusAceptacion" class="alert alert-success" role="alert">
+                                            Aprobado!
+                                        </div>
+                                        <div *ngIf="documents.idtipo<statusAceptacion" class="alert alert-danger" role="alert">
+                                            No se ha enviado.
+                                        </div>
+                                        
+                                    </div>
                                 </div>
-                                <div *ngIf="documents.idtipo<statusAceptacion" class="alert alert-danger" role="alert">
-                                    No se ha enviado.
-                                 </div>
-                                   
-                            </div>
-                        </div>
                             </fieldset>
                       </ng-template>
                     <!-- PASO 2 -->
                     <div class="form-inline " *ngIf="statusAnte==documents.idtipo; else AnteFalse">
-                            <label for="exampleInputEmail1">Paso 2: Entrega de Anteproyecto</label>
+                            <label for="exampleInputEmail1">Entrega de Anteproyecto</label>
 
                             <div class="form-group mb-2">
                             
@@ -68,43 +81,129 @@
                                         Subir documento
                                     </button>
                                 </div>
+
                                 <div *ngIf="porAprobar==documents.idEstatus" class="alert alert-warning" role="alert">
-                                    Archivo por enviar
-                                 </div>
-                                    <div *ngIf="enProceso==documents.idEstatus" class="alert alert-warning" role="alert">
-                                        En proceso.
-                                    </div>
-                                    <div *ngIf="Rechazado==documents.idEstatus" class="alert alert-warning" role="alert">
-                                       Su archivo ha sido rechazado, favor de verificar.
-                                    </div>
-                                
-                                   
+                                        Archivo por enviar
+                                     </div>
+                                        <div *ngIf="enProceso==documents.idEstatus" class="alert alert-warning" role="alert">
+                                            En proceso.
+                                        </div>
+                                        <div *ngIf="Rechazado==documents.idEstatus" class="alert alert-warning" role="alert">
+                                           Su archivo ha sido rechazado, favor de verificar.
+                                        </div>
+
                             </div>
+                            <label for="exampleInputEmail1">Entrega de Cronograma</label>
+
+                            <div class="form-group mb-2">
+                            
+                                <div class="form-group files" (change)="handleFileInput($event.target.files)">
+                                    <input type="file" class="form-control" >
+                                    <button (click)="uploadFiles(2,2);">
+                                        Subir documento
+                                    </button>
+                                </div>
+
+                                <div *ngIf="porAprobar==documents.idEstatus" class="alert alert-warning" role="alert">
+                                        Archivo por enviar
+                                     </div>
+                                        <div *ngIf="enProceso==documents.idEstatus" class="alert alert-warning" role="alert">
+                                            En proceso.
+                                        </div>
+                                        <div *ngIf="Rechazado==documents.idEstatus" class="alert alert-warning" role="alert">
+                                           Su archivo ha sido rechazado, favor de verificar.
+                                        </div>
+
+                            </div>
+                            <label for="exampleInputEmail1">Carta de aceptacion sellada</label>
+
+                            <div class="form-group mb-2">
+                            
+                                <div class="form-group files" (change)="handleFileInput($event.target.files)">
+                                    <input type="file" class="form-control" >
+                                    <button (click)="uploadFiles(2,2);">
+                                        Subir documento
+                                    </button>
+                                </div>
+
+                                <div *ngIf="porAprobar==documents.idEstatus" class="alert alert-warning" role="alert">
+                                        Archivo por enviar
+                                     </div>
+                                        <div *ngIf="enProceso==documents.idEstatus" class="alert alert-warning" role="alert">
+                                            En proceso.
+                                        </div>
+                                        <div *ngIf="Rechazado==documents.idEstatus" class="alert alert-warning" role="alert">
+                                           Su archivo ha sido rechazado, favor de verificar.
+                                        </div>
+                            </div>
+                            
                         </div>
 
                         <ng-template #AnteFalse>
                                 <fieldset disabled>
                             <div class="form-inline" >
-                                <label for="exampleInputEmail1">Paso 2: Entrega de Anteproyecto</label>
+                                <label >Entrega de Anteproyecto</label>
     
                                 <div class="form-group mb-2">
                                 
-                                    <div class="form-group files" (change)="handleFileInput($event.target.files)">
-                                        <input type="file" class="form-control" disable>
-                                        <button (click)="uploadFiles(2,2);" disable>
+                                    <div class="form-group files" (change)="handleFileInput($event.target.files)" onclick="this.value=null;">
+                                        <input type="file" class="form-control" >
+                                        <button (click)="uploadFiles(2,2);" >
                                             Subir documento
                                         </button>
                                     </div>
                                   
                                         <div *ngIf="documents.idtipo>statusAnte" class="alert alert-success" role="alert">
-                                            Aprovado!
+                                            Aprobado!
                                         </div>
                                         <div *ngIf="documents.idtipo<statusAnte" class="alert alert-danger" role="alert">
                                             No se ha enviado.
                                          </div>
                                        
-                                </div>
+                                </div> 
+                                <label >Entrega de Cronograma</label>
+
+                                <div class="form-group mb-2">
+
+                                        <div class="form-group files" (change)="handleFileInput($event.target.files)" onclick="this.value=null;">
+                                            <input type="file" class="form-control" >
+                                            <button (click)="uploadFiles(2,2);" >
+                                                Subir documento
+                                            </button>
+                                        </div>
+                                      
+                                       
+                                            <div *ngIf="documents.idtipo>statusAnte" class="alert alert-success" role="alert">
+                                                Aprobado!
+                                            </div>
+                                            <div *ngIf="documents.idtipo<statusAnte" class="alert alert-danger" role="alert">
+                                                No se ha enviado.
+                                             </div>
+                                           
+                                    </div>
+                                    <!--  -->
+                                    <label >Carta aceptacion sellada</label>
+
+                                    <div class="form-group mb-2">
+    
+                                            <div class="form-group files" (change)="handleFileInput($event.target.files)" onclick="this.value=null;">
+                                                <input type="file" class="form-control" disable>
+                                                <button (click)="uploadFiles(2,2);" disable>
+                                                    Subir documento
+                                                </button>
+                                            </div>
+                                          
+                                           
+                                                <div *ngIf="documents.idtipo>statusAnte" class="alert alert-success" role="alert">
+                                                    Aprobado!
+                                                </div>
+                                                <div *ngIf="documents.idtipo<statusAnte" class="alert alert-danger" role="alert">
+                                                    No se ha enviado.
+                                                 </div>
+                                               
+                                        </div>
                             </div>
+                         
                                 </fieldset>
                           </ng-template>
                    <!--  -->
@@ -121,7 +220,8 @@
                                 Subir documento
                             </button>
                         </div>
-                    
+                        
+                       
                         <div *ngIf="porAprobar==documents.idEstatus" class="alert alert-warning" role="alert">
                             Archivo por enviar
                          </div>
@@ -134,6 +234,48 @@
                           
                         
                     </div>
+                    <label >Cronograma 1</label>
+
+                    <div class="form-group mb-2">
+                    
+                        <div class="form-group files" (change)="handleFileInput($event.target.files)">
+                            <input type="file" class="form-control" >
+                            <button (click)="uploadFiles(3,2);">
+                                Subir documento
+                            </button>
+                        </div>
+                        <div *ngIf="porAprobar==documents.idEstatus" class="alert alert-warning" role="alert">
+                                Archivo por enviar
+                             </div>
+                                <div *ngIf="enProceso==documents.idEstatus" class="alert alert-warning" role="alert">
+                                    En proceso.
+                                </div>
+                                <div *ngIf="Rechazado==documents.idEstatus" class="alert alert-warning" role="alert">
+                                Su archivo ha sido rechazado, favor de verificar.
+                                </div>
+                    </div>
+
+                        <label>Registro de Asesorias 1</label>
+
+                        <div class="form-group mb-2">
+                        
+                            <div class="form-group files" (change)="handleFileInput($event.target.files)">
+                                <input type="file" class="form-control" >
+                                <button (click)="uploadFiles(3,2);">
+                                    Subir documento
+                                </button>
+                            </div>
+                            <div *ngIf="porAprobar==documents.idEstatus" class="alert alert-warning" role="alert">
+                                    Archivo por enviar
+                                 </div>
+                                    <div *ngIf="enProceso==documents.idEstatus" class="alert alert-warning" role="alert">
+                                        En proceso.
+                                    </div>
+                                    <div *ngIf="Rechazado==documents.idEstatus" class="alert alert-warning" role="alert">
+                                    Su archivo ha sido rechazado, favor de verificar.
+                                    </div>
+                        </div>
+                
                 </div>
 
                 <ng-template #PrimerFalse>
@@ -149,8 +291,9 @@
                                     Subir documento
                                 </button>
                             </div>
+
                             <div *ngIf="documents.idtipo>statusPrimer" class="alert alert-success" role="alert">
-                                Aprovado!
+                                Aprobado!
                             </div>
                             <div *ngIf="documents.idtipo<statusPrimer" class="alert alert-danger" role="alert">
                                 No se ha enviado.
@@ -174,6 +317,29 @@
                                     Subir documento
                                 </button>
                             </div>
+
+                            <label >Cronograma 2</label>
+
+                            <div class="form-group mb-2">
+                            
+                                <div class="form-group files" (change)="handleFileInput($event.target.files)">
+                                    <input type="file" class="form-control" >
+                                    <button (click)="uploadFiles(4,2);">
+                                        Subir documento
+                                    </button>
+                                </div>
+                            </div>
+                                <label>Registro de Asesorias 2</label>
+    
+                                <div class="form-group mb-2">
+                                
+                                    <div class="form-group files" (change)="handleFileInput($event.target.files)">
+                                        <input type="file" class="form-control" >
+                                        <button (click)="uploadFiles(4,2);">
+                                            Subir documento
+                                        </button>
+                                    </div>
+                                </div>
                         
                             <div *ngIf="porAprobar==documents.idEstatus" class="alert alert-warning" role="alert">
                                 Archivo por enviar
@@ -203,13 +369,14 @@
                                     </button>
                                 </div>
                                 <div *ngIf="documents.idtipo>statusSegundo" class="alert alert-success" role="alert">
-                                    Aprovado!
+                                    Aprobado!
                                 </div>
                                 <div *ngIf="documents.idtipo<statusSegundo" class="alert alert-danger" role="alert">
                                     No se ha enviado.
                                 </div>
                                 
                             </div>
+                            
                         </div>
                     </fieldset>
                     </ng-template>
@@ -227,6 +394,28 @@
                                     Subir documento
                                 </button>
                             </div>
+                            <label >Cronograma 3</label>
+
+                            <div class="form-group mb-2">
+                            
+                                <div class="form-group files" (change)="handleFileInput($event.target.files)">
+                                    <input type="file" class="form-control" >
+                                    <button (click)="uploadFiles(5,2);">
+                                        Subir documento
+                                    </button>
+                                </div>
+                            </div>
+                                <label>Registro de Asesorias 3</label>
+    
+                                <div class="form-group mb-2">
+                                
+                                    <div class="form-group files" (change)="handleFileInput($event.target.files)">
+                                        <input type="file" class="form-control" >
+                                        <button (click)="uploadFiles(5,2);">
+                                            Subir documento
+                                        </button>
+                                    </div>
+                                </div>
                         
                             <div *ngIf="porAprobar==documents.idEstatus" class="alert alert-warning" role="alert">
                                 Archivo por enviar
@@ -256,13 +445,14 @@
                                     </button>
                                 </div>
                                 <div *ngIf="documents.idtipo>statusTercer" class="alert alert-success" role="alert">
-                                    Aprovado!
+                                    Aprobado!
                                 </div>
                                 <div *ngIf="documents.idtipo<statusTercer" class="alert alert-danger" role="alert">
                                     No se ha enviado.
                                 </div>
                                 
                             </div>
+                          
                         </div>
                     </fieldset>
                     </ng-template>
@@ -271,8 +461,8 @@
         <!--  EVALUACION DE SEGUIMIENTO-->
         <div class="form-inline" *ngIf="statusSeguiRepor==documents.idtipo; else EvaFalse">
                    
-                <label >Evaluacion de seguimiento de residencia </label>
-
+                <!-- <label > Cierre de residencias </label> -->
+                <label > Evaluacion de proyecto </label>
                 <div class="form-group mb-2">
                 
                     <div class="form-group files" (change)="handleFileInput($event.target.files)">
@@ -281,7 +471,7 @@
                             Subir documento
                         </button>
                     </div>
-                
+                  
                     <div *ngIf="porAprobar==documents.idEstatus" class="alert alert-warning" role="alert">
                         Archivo por enviar
                      </div>
@@ -299,7 +489,7 @@
             <ng-template #EvaFalse>
             <fieldset disabled>
                 <div class="form-inline ">
-                        <label >Evaluacion de seguimiento de residencia</label>
+                        <label >Cierre de residencias</label>
 
                     <div class="form-group mb-2">
                     
@@ -310,19 +500,20 @@
                             </button>
                         </div>
                         <div *ngIf="documents.idtipo>statusSeguiRepor" class="alert alert-success" role="alert">
-                            Aprovado!
+                            Aprobado!
                         </div>
                         <div *ngIf="documents.idtipo<statusSeguiRepor" class="alert alert-danger" role="alert">
                             No se ha enviado.
                         </div>
                         
                     </div>
+                    
                 </div>
             </fieldset>
             </ng-template>
                      <!--  -->
                       <!--  Evaluacion de reporte de residencia-->
-        <div class="form-inline" *ngIf="statusReporResi===documents.idtipo; else repoResiFalse">
+        <!-- <div class="form-inline" *ngIf="statusReporResi===documents.idtipo; else repoResiFalse">
                    
                 <label >Evaluacion de reporte de residencia</label>
 
@@ -363,7 +554,7 @@
                             </button>
                         </div>
                         <div *ngIf="documents.idtipo>statusReporResi" class="alert alert-success" role="alert">
-                            Aprovado!
+                            Aprobado!
                         </div>
                         <div *ngIf="documents.idtipo<statusReporResi" class="alert alert-danger" role="alert">
                             No se ha enviado.
@@ -372,7 +563,7 @@
                     </div>
                 </div>
             </fieldset>
-            </ng-template>
+            </ng-template> -->
                               
                 </div>
             </div>

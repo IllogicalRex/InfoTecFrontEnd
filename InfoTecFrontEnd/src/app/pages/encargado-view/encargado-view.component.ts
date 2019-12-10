@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { BlobStorageService } from '../../services/BlobStorageService.service';
 import Swal from 'sweetalert2'
+
 @Component({
-  selector: 'app-file-manager',
-  templateUrl: './file-manager.component.html',
-  styleUrls: ['./file-manager.component.css']
+  selector: 'app-encargado-view',
+  templateUrl: './encargado-view.component.html',
+  // styleUrls: ['./encargado-view.component.css']
 })
-export class FileManagerComponent implements OnInit {
+export class EncargadoViewComponent implements OnInit {
 
   constructor(public blobStorageService: BlobStorageService) { }
   files: string[] = [];  
@@ -21,58 +22,40 @@ export class FileManagerComponent implements OnInit {
   estado:any;
   extn:any;
 
-  // statusAceptacion:any=1;
-  // statusAnte: any=2;
-  // statusPrimer: any=3;
-  // statusSegundo: any=4;
-  // statusTercer: any=5;
-  // statusSeguiRepor: any=6;
-  // statusReporResi: any=7;
-  // porAprobar: any=1;
-  // enProceso: any=2;
-  // Aprobado: any=3;
-  // Rechazado: any=4;
-  asesor = JSON.parse(localStorage.getItem('token'));
-
+  encargado = JSON.parse(localStorage.getItem('token'));
 
   ngOnInit() {
     this.id= JSON.parse(localStorage.getItem("token"));
-    this.getDocumentoAlumnoAsesor(this.id.userName);
-    // this.showBlobs();
+    this.getDocumentoEncargado(this.id.userName);
   }
-//Muestra todos los archivos
-  showBlobs() {  
-    return this.blobStorageService.showBlobs().subscribe(res=>{
-      this.documents = res;  
-    })
-  }  
-  //descarga archivo
-  downloadFile(fileName: any) { 
+   //descarga archivo
+   downloadFile(fileName: any) { 
     return this.blobStorageService.downloadFile(fileName)
   }
 //Elimina un archivo
   deleteFile(fileName: any){
-    return Swal.fire({
-      title: 'Reenviar archivo',
-      text: 'Seguro que desea enviar archivo?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes'
-    }).then((res)=>{
-      if (res.value) {
-        console.log(this.id.userName)
-        return this.blobStorageService.deleteFile(fileName).subscribe(()=>this.getDocumentoAlumnoAsesor(this.id.userName))
-      }
+    return this.blobStorageService.deleteFile(fileName).subscribe(()=>this.getDocumentoEncargado(this.id.userName))
+    // return Swal.fire({
+    //   title: 'Reenviar archivo',
+    //   text: 'Seguro que desea enviar archivo?',
+    //   icon: 'warning',
+    //   showCancelButton: true,
+    //   confirmButtonText: 'Yes'
+    // }).then((res)=>{
+    //   if (res.value) {
+    //     console.log(this.id.userName)
+    //   }
       
-    })
+    // })
   }
-  getDocumentoAlumnoAsesor(id){
 
-    this.blobStorageService.getDocumentoAlumnoAsesor(id).subscribe((res:any)=>{
+  getDocumentoEncargado(id){
+
+    this.blobStorageService.getDocumentoEncargado(id).subscribe((res:any)=>{
           this.documents=res;
       });
   }
-  handleFileInput(files: any) {  
+  handleFileInput(files: any) { 
     this.extn = files[0].name.split(".").pop();
 
     console.log(files[0].name);
@@ -85,7 +68,8 @@ export class FileManagerComponent implements OnInit {
     this.fileToUpload = formData; 
     if(this.extn==="pdf" || this.extn==="doc" || this.extn==="docx"){
     this.documents.map((res)=>{
-      if(DocName==res.url){
+
+      if(DocName===res.url){
         let document = {
           AlumnId: res.alumnId,
           Idtipo: tipo,
@@ -94,15 +78,12 @@ export class FileManagerComponent implements OnInit {
           ComentarioAsesor: res.comentarioAsesor,
           idEstatus: estado,
           ComentarioAdmRes: res.comentarioAdmRes,
-          Idasesor: this.asesor.userName,
-          idadmin: res.idadmin
+          Idasesor: res.idasesor,
+          idadmin: this.encargado.userName
         };
-          this.deleteFile(res.url);
+        this.deleteFile(res.url);
           this.onUploadFiles();
-          this.blobStorageService.updateFileToDataBase(document).subscribe(()=>{
-            this.fileToUpload=null;
-
-          });
+          this.blobStorageService.updateFileToDataBase(document).subscribe();
       }
     })
   } else{
@@ -113,7 +94,6 @@ export class FileManagerComponent implements OnInit {
       icon: 'warning',
       confirmButtonText: 'Ok'
     })
-
     )
   }
    
@@ -135,6 +115,8 @@ export class FileManagerComponent implements OnInit {
           icon: 'success',
           confirmButtonText: 'Ok'
         })
+        this.fileToUpload=null;
+
       });
     }
   }
@@ -143,7 +125,6 @@ export class FileManagerComponent implements OnInit {
     this.tipo=value;
   }
   setEstado(value){
- 
     this.estado=value;
   }
 

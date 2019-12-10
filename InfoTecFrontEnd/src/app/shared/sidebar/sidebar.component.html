@@ -17,6 +17,11 @@
     <!-- <i class="fas fa-fw fa-folder"></i> -->
     <span>Panel de Archivos</span>
 </a>
+<a *ngIf="user === 'encargado'" [routerLink]="['/fileencargado']" class="nav-link" href="#" id="pages4Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <!-- <i class="fas fa-fw fa-folder"></i> -->
+    <span>Panel de Archivos</span>
+</a>
+
 <!--  <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-item" [routerLink]="['/user']">Panel</h6>
             <h6 class="dropdown-item" *ngIf="user === 'alumno' || user === 'encargado'" [routerLink]="['/bank']">Banco de proyectos</h6>

@@ -62,6 +62,8 @@ export class BlobStorageService {
   getDocumentoAlumnoAsesor(id: any) {
     return this.blobStorageService.get(this.URL + 'document/asesor/'+ id)
   }
- 
+  getDocumentoEncargado(id: any) {
+    return this.blobStorageService.get(this.URL + 'document/encargado/'+ id)
+  }
  
 }

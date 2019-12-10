@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../interceptors/TokenInterceptor.interceptor';
 import { SeguimientoComponent } from './seguimiento/seguimiento.component';
 import { FileAsesorManagerComponent } from './asesor/file-manager/file-manager.component';
+import { EncargadoViewComponent } from './encargado-view/encargado-view.component';
 import { CreateProjectComponent } from './functionalities/create-project/create-project.component';
 
 
@@ -23,6 +24,7 @@ import { CreateProjectComponent } from './functionalities/create-project/create-
     PagesComponent,
     SeguimientoComponent,
     FileAsesorManagerComponent,
+    EncargadoViewComponent,
     CreateProjectComponent
   ],
   imports: [
@@ -36,7 +38,8 @@ import { CreateProjectComponent } from './functionalities/create-project/create-
     ProjectBankComponent,
     UserPanelComponent,
     FileManagerComponent,
-    FileAsesorManagerComponent
+    FileAsesorManagerComponent,
+    EncargadoViewComponent
   ],
   providers: [
     {

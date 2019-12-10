@@ -18,6 +18,7 @@ export class SeguimientoComponent implements OnInit {
   fileDownloadInitiated: boolean; 
   documents: any;
   user = JSON.parse(localStorage.getItem('token'));
+  extn:any;
   statusAceptacion:any=1;
   statusAnte: any=2;
   statusPrimer: any=3;
@@ -33,6 +34,9 @@ export class SeguimientoComponent implements OnInit {
 
   constructor(public blobStorageService: BlobStorageService,
               public fileService: FileUploadService) { 
+                this.documents={
+                  idtipo:0
+                }
               }
   ngOnInit() {
 
@@ -41,14 +45,16 @@ export class SeguimientoComponent implements OnInit {
   }
   //maneja el tipo de archivo
   handleFileInput(files: any) {  
-    console.log(files[0].name);
+     this.extn = files[0].name.split(".").pop();
     this.loadedFile = files;
+    console.log( this.loadedFile)
+
   }  
   // sube el archivo
   onUploadFiles() {  
-    if (this.fileUpoadInitiated) {  
-      return;  
-    }  
+    // if (this.fileUpoadInitiated) {  
+    //   return;  
+    // }  
     this.fileUpoadInitiated = true;  
     if (this.fileToUpload == undefined) {  
       this.fileUpoadInitiated = false;  
@@ -59,11 +65,12 @@ export class SeguimientoComponent implements OnInit {
   }
 
   uploadFiles(tipo: number, estado:number,comentarioAsesor,comentarioAdmRes,asesor,admin) {
-    console.log('archivo  ',  this.user.userName);
     let DocName = String(this.user.userName + '-' + this.loadedFile[0].name);
     let formData: FormData = new FormData(); 
     formData.append('asset', this.loadedFile[0], DocName);
     this.fileToUpload = formData; 
+    if(this.extn==="pdf" || this.extn==="doc" || this.extn==="docx"){
+
     this.onUploadFiles();
     let document = {
       AlumnId: this.user.userName,
@@ -82,27 +89,36 @@ export class SeguimientoComponent implements OnInit {
           text: '',
           icon: 'success',
           confirmButtonText: 'Ok'
-        })
+        });
+        this.loadedFile = null;
+        console.log( this.loadedFile)
+        this.getDocument(document.AlumnId)
+        
            return res;
     });
+  }
+  else{
+    return(
+    Swal.fire({
+      title: 'Archivo invalido',
+      text: 'Favor de subir archivos con extensiones: pdf, doc o docx',
+      icon: 'warning',
+      confirmButtonText: 'Ok'
+    })
+    )
+  }
+
   }
 
   getDocument(numControl){
     this.blobStorageService.getDocument(numControl).subscribe((res:any)=>{
         res.map((res: any)=>{
           if(res.idEstatus!=3){
-            if(res.idtipo===1){
+            if(res.idtipo){
               console.log(res)
               this.documents=res;
             }
-            if(res.idtipo===2){
-              console.log(res)
-              this.documents=res;
-            }
-            if(res.idtipo===4){
-              console.log(res)
-              this.documents=res;
-            }
+            
           }
           if(res.idEstatus==3){
             this.documents={

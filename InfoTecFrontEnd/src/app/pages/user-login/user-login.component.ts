@@ -19,29 +19,26 @@ export class UserLoginComponent implements OnInit {
   tokenInfo: any;
   constructor(public userLogin: AuthGardService,  public router: Router) {
     this.tokenInfo = JSON.parse(localStorage.getItem('token'));
-    this.userType = 'alumno';
+    this.userType = 'Alumno';
    }
 
   ngOnInit() {
   }
 
   Login() {
-    console.log('token2', this.tokenInfo);
-    if ( this.userType === 'alumno' ) {
-      console.log('entre alumno', this.tokenInfo);
+    if ( this.userType === 'Alumno' ) {
       this.userLogin.LoginUserAlumn(this.user).subscribe((res: any) => {
         this.isAutenticated();
         this.router.navigate(['/user']);
         return;
       });
-    } else if ( this.userType === 'asesor' ) {
-      console.log('entre Asesor', this.tokenInfo);
+    } else if ( this.userType === 'Asesor' ) {
       this.userLogin.LoginUserAsesor(this.user).subscribe((res: any) => {
         this.isAutenticated();
         this.router.navigate(['/user']);
         return;
       });
-    } else if ( this.userType === 'encargado' ) {
+    } else if ( this.userType === 'Encargado de residencias' ) {
       this.userLogin.LoginUserEncargado(this.user).subscribe((res: any) => {
         this.isAutenticated();
         this.router.navigate(['/user']);
@@ -61,7 +58,6 @@ export class UserLoginComponent implements OnInit {
     }
   }
   typeUser(event) {
-    this.userType = event;
-    console.log(event);
+    console.log(this.userType);
   }
 }

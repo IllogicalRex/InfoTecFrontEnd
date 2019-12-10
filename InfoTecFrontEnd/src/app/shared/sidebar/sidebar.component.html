@@ -5,15 +5,15 @@
     <!-- <i class="fas fa-fw fa-folder"></i> -->
     <span>Panel</span>
 </a>
-<a *ngIf="user === 'encargado' || user === 'alumno' " [routerLink]="['/bank']" class="nav-link " href="#" id="pages2Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<a *ngIf="user === 'Encargado de residencias' || user === 'Alumno' " [routerLink]="['/bank']" class="nav-link " href="#" id="pages2Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <!-- <i class="fas fa-fw fa-folder"></i> -->
     <span>Banco de proyectos</span>
 </a>
-<a *ngIf="user === 'alumno'" [routerLink]="['/seguimiento']" class="nav-link" href="#" id="pages3Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<a *ngIf="user === 'Alumno'" [routerLink]="['/seguimiento']" class="nav-link" href="#" id="pages3Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <!-- <i class="fas fa-fw fa-folder"></i> -->
     <span>Seguimiento</span>
 </a>
-<a *ngIf="user === 'asesor'" [routerLink]="['/file']" class="nav-link" href="#" id="pages4Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<a *ngIf="user === 'Asesor'" [routerLink]="['/file']" class="nav-link" href="#" id="pages4Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <!-- <i class="fas fa-fw fa-folder"></i> -->
     <span>Panel de Archivos</span>
 </a>

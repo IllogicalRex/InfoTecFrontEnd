@@ -1,40 +1,43 @@
 <div class="container">
-    <h1>Iniciar sesión</h1>
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-secondary active" (click)="typeUser('alumno')">
-              <input type="radio" name="options" id="option1" checked> Alumno
-            </label>
-        <label class="btn btn-secondary" (click)="typeUser('asesor')">
-              <input type="radio" name="options" id="option2"> Asesor
-            </label>
-        <label class="btn btn-secondary" (click)="typeUser('encargado')">
-              <input type="radio" name="options" id="option3"> Encargado de residencias
-            </label>
-    </div>
-    <div class="card" style="width: 400px;">
-        <div class="card-body">
+    <div class="row">
+        <div class="col-sm">
+            <div class="card center-card" style="width: 400px; margin-top: 130px;">
+                <div class="card-body">
 
-            <div *ngIf="isUnauthorized" class="alert alert-warning alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button> Usuario o contraseña incorrecta
+                    <div *ngIf="isUnauthorized" class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button> Usuario o contraseña incorrecta
+                    </div>
+                    <form id="form1" name="form1" #form="ngForm">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Usuario</label>
+                            <input type="text" [(ngModel)]="user.userName" name="userName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <!--  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Contraseña</label>
+                            <input type="password" [(ngModel)]="user.password" name="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputState">Tipo usuario</label>
+                            <select [(ngModel)]="userType" id="inputUser" name="select" class="form-control">
+                                <option selected >Seleccione tipo de usuario...</option>
+                                <option >Alumno</option>
+                                <option >Asesor</option>
+                                <option >Encargado de residencias</option>
+                            </select>
+                        </div>
+                        <!-- <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                    </div> -->
+                        <button type="submit" class="btn btn-primary text-right" (click)="Login()">Acceder</button>
+                    </form>
+                </div>
             </div>
-            <form id="form1" name="form1" #form="ngForm">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Usuario</label>
-                    <input type="text" [(ngModel)]="user.userName" name="userName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <!--  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Contraseña</label>
-                    <input type="password" [(ngModel)]="user.password" name="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <!-- <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div> -->
-                <button type="submit" class="btn btn-primary" (click)="Login()">Login</button>
-            </form>
+
         </div>
+
     </div>
 </div>

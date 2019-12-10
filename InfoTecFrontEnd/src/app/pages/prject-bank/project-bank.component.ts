@@ -21,7 +21,7 @@ export class ProjectBankComponent implements OnInit {
               public router: Router) { }
 
   ngOnInit() {
-    if (this.config.subscriptionStatus !== 'vacio' && this.config.user === 'alumno') {
+    if (this.config.subscriptionStatus !== 'vacio' && this.config.user === 'Alumno') {
       Swal.fire(
         'Ya cuentas con un proyecto asignado',
         'No puedes seleccionar otro proyecto, solo podrás ver los proyectos disponibles.',

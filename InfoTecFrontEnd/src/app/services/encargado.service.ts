@@ -7,7 +7,7 @@ import { ProjectModel } from '../pages/models/project-model';
 @Injectable({
   providedIn: 'root'
 })
-export class CompanyService {
+export class EncargadoService {
 
 
     public URL = 'https://localhost:44344/api/';
@@ -15,8 +15,14 @@ export class CompanyService {
 
   constructor(public http: HttpClient) { }
 
-  getAllCompanies() {
-    return this.http.get(this.URL + 'empresa');
+  getEncargado(id: string) {
+    return this.http.get(this.URL + 'encargado/' + id);
   }
+
+  
+/* 
+  projectSubscription(project: ProjectModel) {
+    return this.http.post(this.URL + 'projectbank/subscribir', project);
+  } */
 
 }

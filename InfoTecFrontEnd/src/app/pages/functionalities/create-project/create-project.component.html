@@ -25,9 +25,11 @@
 
                     </div>
                     <div class="form-group">
-                        <label class="font-label">Empresa</label>
-                        <input [(ngModel)]="project.nombre_emp" name="lastname" type="text" class="form-control font-input" placeholder="Nombre de recurso" required>
-
+                        <label for="inputState">Empresa</label>
+                        <select [(ngModel)]="project.nombre_emp" id="inputState" class="form-control">
+                            <option selected >Seleccione una empresa</option>
+                            <option *ngFor="let company of companies; let i = index">{{company.nombre}}</option>
+                        </select>
                     </div>
                     <div class="form-group">
 

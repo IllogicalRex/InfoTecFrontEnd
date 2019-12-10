@@ -15,6 +15,7 @@ export class AppComponent {
       localStorage.setItem('token', JSON.stringify({ token: 'Unauthorized', user: '', userName: '', subscriptionStatus: 'vacio' }));
     }
     this.token  = JSON.parse(localStorage.getItem('token'));
+    console.log(this.token);
     if (this.token.token.length > 15 && this.token.token !== 'Unauthorized') {
       // console.log('entre   ', this.token);
       this.router.navigate(['/user']);

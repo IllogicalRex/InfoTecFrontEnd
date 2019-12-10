@@ -1,5 +1,4 @@
 <div class="row">
-
     <div class="col-md-3">
         <div class="ibox float-e-margins">
             <div class="ibox-content">
@@ -10,9 +9,12 @@
                         <div class="input-group-prepend">
                           <label class="input-group-text" for="inputGroupSelect01">Tipo Doc</label>
                         </div>
-                        <select class="custom-select" id="inputGroupSelect01" (change)="setTipo(v.value)" #v>
+                        <select class="custom-select" id="inputGroupSelect01" (change)="setTipo(m.value)" #m>
                           <option selected>Seleccione...</option>
+                          <option value="1">Carta Aceptacion</option>
                           <option value="2">Anteproyecto</option>
+                          <option value="2">Cronograma</option>
+                          <option value="2">Carta sellada</option>
                           <option value="6">Seguimiento de residencia</option>
                           <option value="7">reporte de residencia</option>
                         </select>
@@ -22,7 +24,7 @@
                         <div class="input-group-prepend">
                           <label class="input-group-text" for="inputGroupSelect02">Estado</label>
                         </div>
-                        <select class="custom-select" id="inputGroupSelect02" (change)="setEstado(k.value)" #k>
+                        <select class="custom-select" id="inputGroupSelect02" (change)="setEstado(n.value)" #n>
                           <option selected>Seleccione...</option>
                           <option value="3">Aprobado</option>
                           <option value="4">Rechazar</option>

@@ -12,42 +12,14 @@
                                 Joel Alberto Velazquez Quiñonez
                             </div>
                         </div>
-                        <div class="col-sm" *ngIf="activeProject">
-                            <div class="text-right">
-                                <div class="font-weight-bold">
-                                    Segimiento activo <button type="button" class="btn btn-link" [routerLink]="['/seguimiento']">Resource Management</button>
-                                </div>
-                                <!--   <div class="row">
-                                    <div class="col-sm">
-                                        <div class="card ">
-                                            <div class="card-header" style="background: white;">
-                                                <div class="font-weight-bold">
-                                                    Segimiento activo
-                                                </div>
-                                            </div>
-                                            <div class="card-body ">
-                                                <div class="col-sm font-weight-light">
-                                                    <div class="row">
-                                                        <div class="col-auto">
-                                                            <div class="text-left">
-                                                                <div class="font-weight-bold">Nombre del proyecto:</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <div class="text-left">
-                                                                Resource Management
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-        
+                        <div *ngIf="config.user === 'alumno'">
+                            <div class="col-sm" *ngIf="alumn.nombreProyecto !== 'vacio' ">
+                                <div class="text-right">
+                                    <div class="font-weight-bold">
+                                        Segimiento activo <button type="button" class="btn btn-link" [routerLink]="['/seguimiento']">{{alumn.nombreProyecto}}</button>
                                     </div>
-        
-                                </div> -->
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -57,12 +29,15 @@
 
                 </div>
                 <div class="card-body align-items-center d-flex justify-content-center">
-                    <div class="text-center ">
+                    <div *ngIf="spiner" class="spinner-grow" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div *ngIf="config.user === 'alumno'" class="text-center ">
                         <div class="row">
                             <div class="col-sm">
                                 <div class="row">
                                     <div class="col-sm-auto">
-                                        <div class="card " style="min-height: 350px;">
+                                        <div class="card " style="min-height: 350px; min-width: 300px;">
                                             <div class="card-header" style="background: white;">
                                                 <div class="font-weight-bold">
                                                     Informacion Escolar
@@ -78,7 +53,7 @@
                                                         </div>
                                                         <div class="col-auto">
                                                             <div class="text-left">
-                                                                (11) ING. SIST. COMP.
+                                                                {{alumn.carrera}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -90,7 +65,7 @@
                                                         </div>
                                                         <div class="col-sm-auto">
                                                             <div class="text-left">
-                                                                (f) ISIC-2010-224 DE 260 CRÉDITOS
+                                                                {{alumn.plan_estudio}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -102,7 +77,7 @@
                                                         </div>
                                                         <div class="col-sm-auto">
                                                             <div class="text-left">
-                                                                (2) INGENIERIA DE SOFTWARE
+                                                                {{alumn.mod_especialidad}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -114,7 +89,7 @@
                                                         </div>
                                                         <div class="col-sm-auto">
                                                             <div class="text-left">
-                                                                VIGENTE
+                                                                {{alumn.sit_vigencia}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -126,7 +101,7 @@
                                                         </div>
                                                         <div class="col-sm-auto">
                                                             <div class="text-left">
-                                                                87
+                                                                {{alumn.promedio}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -138,7 +113,7 @@
                                                         </div>
                                                         <div class="col-sm-auto">
                                                             <div class="text-left">
-                                                                241
+                                                                {{alumn.creditos_acumulados}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -150,7 +125,7 @@
                                                         </div>
                                                         <div class="col-sm-auto">
                                                             <div class="text-left">
-                                                                (2143) 2143 AGODIC2014
+                                                                {{alumn.periodo_ingreso}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -162,7 +137,7 @@
                                                         </div>
                                                         <div class="col-sm-auto">
                                                             <div class="text-left">
-                                                                0
+                                                                {{alumn.periodo_convalidado}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -174,7 +149,7 @@
                                                         </div>
                                                         <div class="col-sm-auto">
                                                             <div class="text-left">
-                                                                Semestre 11 (2193) AGO-DIC 19
+                                                                {{alumn.periodo_actual_ultimo}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -186,7 +161,7 @@
                                                         </div>
                                                         <div class="col-sm-auto">
                                                             <div class="text-left">
-                                                                CARMEN JOEL VELAZQUEZ BAZUA
+                                                                {{alumn.tutor}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -196,7 +171,7 @@
                                     </div>
                                     <div class="col-sm">
                                         <div class="row">
-                                            <div class="card " style="min-height: 350px;">
+                                            <div class="card " style="min-height: 350px; min-width: 500px;">
                                                 <div class="card-header" style="background: white;">
                                                     <div class="font-weight-bold">
                                                         Informacion Escolar
@@ -212,7 +187,7 @@
                                                             </div>
                                                             <div class="col-auto">
                                                                 <div class="text-left">
-                                                                    VEQJ960608HSLLXL08
+                                                                    {{alumn.curp}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -224,7 +199,7 @@
                                                             </div>
                                                             <div class="col-sm-auto">
                                                                 <div class="text-left">
-                                                                    1996-08-06
+                                                                    {{alumn.fecha_naci}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -236,7 +211,7 @@
                                                             </div>
                                                             <div class="col-sm-auto">
                                                                 <div class="text-left">
-                                                                    AGUA COLORADA 3506 PROGRESO CULIACAN CP 80197
+                                                                    {{alumn.direccion}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -248,7 +223,7 @@
                                                             </div>
                                                             <div class="col-sm-auto">
                                                                 <div class="text-left">
-                                                                    7448496
+                                                                    {{alumn.telefono}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -260,7 +235,7 @@
                                                             </div>
                                                             <div class="col-sm-auto">
                                                                 <div class="text-left">
-                                                                    6671383186
+                                                                    {{alumn.telefono}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -272,7 +247,7 @@
                                                             </div>
                                                             <div class="col-sm-auto">
                                                                 <div class="text-left">
-                                                                    LEOJ_ALBERTO@HOTMAIL.COM
+                                                                    {{alumn.correo}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -284,7 +259,7 @@
                                                             </div>
                                                             <div class="col-sm-auto">
                                                                 <div class="text-left">
-                                                                    (117) UAS (DR. SALVADOR ALLENDE), (25006) CULIACAN
+                                                                    {{alumn.escuela_procedencia}}
                                                                 </div>
                                                             </div>
                                                         </div>

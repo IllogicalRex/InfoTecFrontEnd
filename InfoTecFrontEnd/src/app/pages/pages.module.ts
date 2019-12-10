@@ -13,6 +13,7 @@ import { TokenInterceptor } from '../interceptors/TokenInterceptor.interceptor';
 import { SeguimientoComponent } from './seguimiento/seguimiento.component';
 import { FileAsesorManagerComponent } from './asesor/file-manager/file-manager.component';
 import { EncargadoViewComponent } from './encargado-view/encargado-view.component';
+import { CreateProjectComponent } from './functionalities/create-project/create-project.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { EncargadoViewComponent } from './encargado-view/encargado-view.componen
     PagesComponent,
     SeguimientoComponent,
     FileAsesorManagerComponent,
-    EncargadoViewComponent
+    EncargadoViewComponent,
+    CreateProjectComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { EncargadoViewComponent } from './encargado-view/encargado-view.componen
     ProjectBankComponent,
     UserPanelComponent,
     FileManagerComponent,
-    FileAsesorManagerComponent
+    FileAsesorManagerComponent,
+    EncargadoViewComponent
   ],
   providers: [
     {

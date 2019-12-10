@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 @Component({
   selector: 'app-encargado-view',
   templateUrl: './encargado-view.component.html',
-  styleUrls: ['./encargado-view.component.css']
+  // styleUrls: ['./encargado-view.component.css']
 })
 export class EncargadoViewComponent implements OnInit {
 
@@ -20,6 +20,8 @@ export class EncargadoViewComponent implements OnInit {
   id:any;
   tipo:any;
   estado:any;
+  extn:any;
+
   encargado = JSON.parse(localStorage.getItem('token'));
 
   ngOnInit() {
@@ -32,27 +34,30 @@ export class EncargadoViewComponent implements OnInit {
   }
 //Elimina un archivo
   deleteFile(fileName: any){
-    return Swal.fire({
-      title: 'Reenviar archivo',
-      text: 'Seguro que desea enviar archivo?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes'
-    }).then((res)=>{
-      if (res.value) {
-        console.log(this.id.userName)
-        return this.blobStorageService.deleteFile(fileName).subscribe(()=>this.getDocumentoEncargado(this.id.userName))
-      }
+    return this.blobStorageService.deleteFile(fileName).subscribe(()=>this.getDocumentoEncargado(this.id.userName))
+    // return Swal.fire({
+    //   title: 'Reenviar archivo',
+    //   text: 'Seguro que desea enviar archivo?',
+    //   icon: 'warning',
+    //   showCancelButton: true,
+    //   confirmButtonText: 'Yes'
+    // }).then((res)=>{
+    //   if (res.value) {
+    //     console.log(this.id.userName)
+    //   }
       
-    })
+    // })
   }
+
   getDocumentoEncargado(id){
 
     this.blobStorageService.getDocumentoEncargado(id).subscribe((res:any)=>{
           this.documents=res;
       });
   }
-  handleFileInput(files: any) {  
+  handleFileInput(files: any) { 
+    this.extn = files[0].name.split(".").pop();
+
     console.log(files[0].name);
     this.loadedFile = files;
   }  
@@ -61,9 +66,10 @@ export class EncargadoViewComponent implements OnInit {
     let DocName = String(this.loadedFile[0].name);
     formData.append('asset', this.loadedFile[0], DocName);
     this.fileToUpload = formData; 
+    if(this.extn==="pdf" || this.extn==="doc" || this.extn==="docx"){
     this.documents.map((res)=>{
-      console.log(res)
-      if(DocName==res.url){
+
+      if(DocName===res.url){
         let document = {
           AlumnId: res.alumnId,
           Idtipo: tipo,
@@ -72,15 +78,24 @@ export class EncargadoViewComponent implements OnInit {
           ComentarioAsesor: res.comentarioAsesor,
           idEstatus: estado,
           ComentarioAdmRes: res.comentarioAdmRes,
-          Idasesor: this.encargado.userName,
-          idadmin: res.idadmin
+          Idasesor: res.idasesor,
+          idadmin: this.encargado.userName
         };
-        console.log(document)
-          this.deleteFile(res.url);
+        this.deleteFile(res.url);
           this.onUploadFiles();
           this.blobStorageService.updateFileToDataBase(document).subscribe();
       }
     })
+  } else{
+    return(
+    Swal.fire({
+      title: 'Archivo invalido',
+      text: 'Favor de subir archivos con extensiones: pdf, doc o docx',
+      icon: 'warning',
+      confirmButtonText: 'Ok'
+    })
+    )
+  }
    
   }
 
@@ -100,6 +115,8 @@ export class EncargadoViewComponent implements OnInit {
           icon: 'success',
           confirmButtonText: 'Ok'
         })
+        this.fileToUpload=null;
+
       });
     }
   }
@@ -108,7 +125,6 @@ export class EncargadoViewComponent implements OnInit {
     this.tipo=value;
   }
   setEstado(value){
-    console.log(value)
     this.estado=value;
   }
 

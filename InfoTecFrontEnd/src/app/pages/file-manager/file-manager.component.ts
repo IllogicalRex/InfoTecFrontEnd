@@ -19,6 +19,8 @@ export class FileManagerComponent implements OnInit {
   id:any;
   tipo:any;
   estado:any;
+  extn:any;
+
   // statusAceptacion:any=1;
   // statusAnte: any=2;
   // statusPrimer: any=3;
@@ -71,6 +73,8 @@ export class FileManagerComponent implements OnInit {
       });
   }
   handleFileInput(files: any) {  
+    this.extn = files[0].name.split(".").pop();
+
     console.log(files[0].name);
     this.loadedFile = files;
   }  
@@ -79,8 +83,8 @@ export class FileManagerComponent implements OnInit {
     let DocName = String(this.loadedFile[0].name);
     formData.append('asset', this.loadedFile[0], DocName);
     this.fileToUpload = formData; 
+    if(this.extn==="pdf" || this.extn==="doc" || this.extn==="docx"){
     this.documents.map((res)=>{
-      console.log(res)
       if(DocName==res.url){
         let document = {
           AlumnId: res.alumnId,
@@ -93,12 +97,25 @@ export class FileManagerComponent implements OnInit {
           Idasesor: this.asesor.userName,
           idadmin: res.idadmin
         };
-        console.log(document)
           this.deleteFile(res.url);
           this.onUploadFiles();
-          this.blobStorageService.updateFileToDataBase(document).subscribe();
+          this.blobStorageService.updateFileToDataBase(document).subscribe(()=>{
+            this.fileToUpload=null;
+
+          });
       }
     })
+  } else{
+    return(
+    Swal.fire({
+      title: 'Archivo invalido',
+      text: 'Favor de subir archivos con extensiones: pdf, doc o docx',
+      icon: 'warning',
+      confirmButtonText: 'Ok'
+    })
+
+    )
+  }
    
   }
 
@@ -126,7 +143,7 @@ export class FileManagerComponent implements OnInit {
     this.tipo=value;
   }
   setEstado(value){
-    console.log(value)
+ 
     this.estado=value;
   }
 

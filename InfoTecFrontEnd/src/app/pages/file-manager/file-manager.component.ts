@@ -20,7 +20,8 @@ export class FileManagerComponent implements OnInit {
   tipo:any;
   estado:any;
   extn:any;
-
+  comentarioEncargado: string="";
+  comentarioAsesor: string="";
   // statusAceptacion:any=1;
   // statusAnte: any=2;
   // statusPrimer: any=3;
@@ -91,9 +92,9 @@ export class FileManagerComponent implements OnInit {
           Idtipo: tipo,
           url: res.url,
           fecha: res.fecha,
-          ComentarioAsesor: res.comentarioAsesor,
+          ComentarioAsesor: comentarioAsesor,
           idEstatus: estado,
-          ComentarioAdmRes: res.comentarioAdmRes,
+          ComentarioAdmRes: comentarioAdmRes,
           Idasesor: this.asesor.userName,
           idadmin: res.idadmin
         };
@@ -146,5 +147,13 @@ export class FileManagerComponent implements OnInit {
  
     this.estado=value;
   }
+  setComentarioEncargado(value){
+    console.log(value)
+    this.comentarioEncargado=value;
+  }
+  setComentarioAsesor(value){
+    this.comentarioAsesor=value;
+  }
+
 
 }

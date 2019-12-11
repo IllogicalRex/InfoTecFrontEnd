@@ -6,7 +6,14 @@ import { RouterModule } from '@angular/router';
 import { ProjectBankComponent } from './prject-bank/project-bank.component';
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { FileManagerComponent } from './file-manager/file-manager.component';
+import { PAGES_ROUTES } from './pages.routes';
+import { PagesComponent } from './pages.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../interceptors/TokenInterceptor.interceptor';
 import { SeguimientoComponent } from './seguimiento/seguimiento.component';
+import { FileAsesorManagerComponent } from './asesor/file-manager/file-manager.component';
+import { EncargadoViewComponent } from './encargado-view/encargado-view.component';
+import { CreateProjectComponent } from './functionalities/create-project/create-project.component';
 
 
 @NgModule({
@@ -14,16 +21,33 @@ import { SeguimientoComponent } from './seguimiento/seguimiento.component';
     ProjectBankComponent,
     UserPanelComponent,
     FileManagerComponent,
-    SeguimientoComponent
+    PagesComponent,
+    SeguimientoComponent,
+    FileAsesorManagerComponent,
+    EncargadoViewComponent,
+    CreateProjectComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    PAGES_ROUTES
   ],
   exports: [
-    ProjectBankComponent
+    ProjectBankComponent,
+    UserPanelComponent,
+    FileManagerComponent,
+    FileAsesorManagerComponent,
+    EncargadoViewComponent
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    TokenInterceptor
   ]
 })
 export class PagesModule { }

@@ -5,40 +5,80 @@
             <div class="ibox-content">
                 <div class="file-manager">
                     <h5>Documentos</h5>
-                   
-                    <div class="hr-line-dashed"></div>
-                    <button class="btn btn-primary btn-block">Subir archivo</button>
-                    <div class="hr-line-dashed"></div>
-                    <h5>Carpetas</h5>
-                    <ul class="folder-list" style="padding: 0">
-                        <li><a href=""><i class="fa fa-folder"></i> No revisados</a></li>
-                        <li><a href=""><i class="fa fa-folder"></i> Con comentarios</a></li>
-                        <li><a href=""><i class="fa fa-folder"></i> En revision</a></li>
-                        <li><a href=""><i class="fa fa-folder"></i> Revisados</a></li>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="inputGroupSelect01">Tipo Documento</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect01" (change)="setTipo(v.value)" #v>
+                          <option selected>Seleccione...</option>
+                          
+                          <option value="3">Reporte #1</option>
+                          <option value="3">Cronograma #1</option>
+                          <option value="3">Registro de Asesoria #1</option>
+                          <option value="4">Reporte #2</option>
+                          <option value="4">Cronograma #2</option>
+                          <option value="4">Registro de Asesoria #2</option>
+                          <option value="5">Reporte #3</option>
+                          <option value="5">Cronograma #3</option>
+                          <option value="5">Registro de Asesoria #3</option>
+                          <option value="7">reporte de residencia</option>
+                        </select>
+                      </div>
+
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="inputGroupSelect02">Estado</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect02" (change)="setEstado(k.value)" #k>
+                          <option selected>Seleccione...</option>
+                          <option value="3">Aprobado</option>
+                          <option value="4">Rechazar</option>
                        
-                    </ul>
-                
-                    <div class="clearfix"></div>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                                 
+                                  <input type="file" class="form-control" (change)="handleFileInput($event.target.files)">
+
+                         
+                               
+                        
+                  </div>
+                  <button (click)="uploadFiles(tipo,estado,comentarioAsesor,comentarioEncargado);" >
+                      Subir documento
+                  </button>
+                    <!-- <div class="form-group files" (change)="handleFileInput($event.target.files)">
+
+                        <input type="file" class="form-control" >
+                                    <button (click)="uploadFiles(tipo,estado,comentarioAsesor,comentarioEncargado);">
+                                        Subir documento
+                                    </button>
+                    </div> -->
+                    
+                    <div class="form-group" *ngIf="estado==4">
+                            <label for="exampleFormControlTextarea1">Escribir comentario</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  (change)="setComentarioAsesor(comentario.value)"#comentario></textarea>
+                          </div>
                 </div>
             </div>
         </div>
     </div>
 
   
-        <div class="col-md-9 animated fadeInRight" >
+        <div class="col-md-9 animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="file-box" *ngFor="let file of files">
+                    <div class="file-box" *ngFor="let file of documents">
                         <div class="file">
                                 <span class="corner"></span>
                             
-
                                 <div class="icon">
                                     <i class="fa fa-file"></i>
                                 </div>
                                 <div class="file-name">
-                                        {{file}}
-                                        <td style="text-align:center;cursor: pointer;" (click)="downloadFile(file)">
+                                        {{file.url}}
+                                        <td style="text-align:center;cursor: pointer;" (click)="downloadFile(file.url)">
                                                 <i class="fa fa-download"></i></td>
                                         <!-- <td style="text-align:center;cursor: pointer;" (click)="deleteFile(file)">
                                                 <i class="fa fa-delete">Eliminar</i></td> -->

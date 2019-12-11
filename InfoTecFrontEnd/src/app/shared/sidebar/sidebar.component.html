@@ -1,19 +1,40 @@
-<ul class="sidebar position-static navbar-nav toggled">
- 
-    <li class="nav-item active dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Paginas</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+<!-- <ul class="sidebar  position-static navbar-nav toggled"> -->
+
+<li class="nav-item active dropdown">
+    <a class="nav-link " [routerLink]="['/user']" href="#" id="pages1Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-user-circle fa-fw"></i>
+        <span>Panel</span>
+    </a>
+    <a *ngIf="user === 'Encargado de residencias' || user === 'Alumno' " [routerLink]="['/bank']" class="nav-link " href="#" id="pages2Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-suitcase"></i>
+        <span>Banco de proyectos</span>
+    </a>
+    <a *ngIf="user === 'Alumno'" [routerLink]="['/seguimiento']" class="nav-link" href="#" id="pages3Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-map-signs"></i>
+        <span>Seguimiento</span>
+    </a>
+    <a *ngIf="user === 'Asesor'" [routerLink]="['/file']" class="nav-link" href="#" id="pages4Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-file"></i>
+        <span>Panel de Archivos</span>
+    </a>
+    <a *ngIf="user === 'Encargado de residencias'" [routerLink]="['/fileencargado']" class="nav-link" href="#" id="pages4Dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-file"></i>
+        <span>Panel de Archivos</span>
+    </a>
+
+    <!--  <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-item" [routerLink]="['/user']">Panel</h6>
+            <h6 class="dropdown-item" *ngIf="user === 'alumno' || user === 'encargado'" [routerLink]="['/bank']">Banco de proyectos</h6>
+            <h6 class="dropdown-item" *ngIf="user === 'alumno'" [routerLink]="['/seguimiento']">Seguimiento</h6>
+            <h6 class="dropdown-item" *ngIf="user === 'asesor'" [routerLink]="['/file']">Panel de Archivos</h6>
+             <a class="dropdown-item" [routerLink]="['/user']">Panel</a>
+            <a *ngIf="user === 'alumno' || user === 'encargado'" class="dropdown-item" [routerLink]="['/bank']">Banco de proyectos</a>
             <h6 class="dropdown-header">Paginas:</h6>
-            <a class="dropdown-item" [routerLink]="['/user']">Perfil</a>
-            <a class="dropdown-item" [routerLink]="['/bank']">Banco de proyectos</a>
-            <a class="dropdown-item" [routerLink]="['/seguimiento']">Seguimiento</a>
-            <a class="dropdown-item" [routerLink]="['/file']">Panel de Archivos</a>
-        </div>
-    </li>
-    <!-- <li class="nav-item">
+            <a *ngIf="user === 'alumno'" class="dropdown-item" [routerLink]="['/seguimiento']">Seguimiento</a>
+            <a *ngIf="user === 'asesor'" class="dropdown-item" [routerLink]="['/file']">Panel de Archivos</a>
+        </div> -->
+</li>
+<!-- <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
@@ -23,4 +44,4 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li> -->
-</ul>
+<!-- </ul> -->

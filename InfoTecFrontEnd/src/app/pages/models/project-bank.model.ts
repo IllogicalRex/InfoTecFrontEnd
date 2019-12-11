@@ -1,5 +1,5 @@
 export class ProjectBankModel {
-    public IdBproy: number;
+    public idBproy: number;
     public tipo_proyecto: string;
     public nombre_proy: string;
     public nombre_emp: string;

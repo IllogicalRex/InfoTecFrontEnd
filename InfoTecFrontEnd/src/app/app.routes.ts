@@ -2,13 +2,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProjectBankComponent } from './pages/prject-bank/project-bank.component';
 import { UserPanelComponent } from './pages/user-panel/user-panel.component';
 import { FileManagerComponent } from './pages/file-manager/file-manager.component';
-import { SeguimientoComponent } from './pages/seguimiento/seguimiento.component';
+import { UserLoginComponent } from './pages/user-login/user-login.component';
+import { PagesModule } from './pages/pages.module';
 
 const appRoutes: Routes = [
-   {path: 'bank', component: ProjectBankComponent },
-   {path: 'user', component: UserPanelComponent },
-   {path: 'file', component: FileManagerComponent },
-   {path: 'seguimiento', component: SeguimientoComponent }
+      {path: 'login', component: UserLoginComponent },
+      {path: '**', component: UserLoginComponent }
 ];
 
 export const APP_ROUTES = RouterModule.forRoot(appRoutes, {useHash: true});

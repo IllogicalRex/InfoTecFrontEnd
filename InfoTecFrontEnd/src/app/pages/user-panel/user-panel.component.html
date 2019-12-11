@@ -1,13 +1,26 @@
 <div class="container-fluid">
     <div class="row justify-content-center align-items-center">
         <div class="col-sm-12">
-            <div class="card " style="background: #FAF6F6;">
-                <div class="card-header" style="background: white;">
-                    <h4>
-                        Informacion de usuario
-                    </h4>
-                    <div>
-                        Joel Alberto Velazquez Quiñonez
+            <div *ngIf="config.user === 'Alumno'" class="card shadow " style="background: #FAF6F6; border-color: transparent;">
+                <div class="card-header" style="background: white;border-color: transparent;">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h4>
+                                Informacion de usuario
+                            </h4>
+                            <div>
+                                {{alumn.nombre}} {{alumn.apellido}}
+                            </div>
+                        </div>
+                        <div *ngIf="config.user === 'Alumno'">
+                            <div class="col-sm" *ngIf="alumn.nombreProyecto !== 'vacio' ">
+                                <div class="text-right">
+                                    <div class="font-weight-bold">
+                                        Segimiento activo <button type="button" class="btn btn-link" [routerLink]="['/seguimiento']">{{alumn.nombreProyecto}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <br>
@@ -15,135 +28,241 @@
                     <img src="../../../assets/images/blank_avatar.png" style="width: 18rem; background: white;" class="img-fluid border border-dark  rounded-circle" alt="...">
 
                 </div>
-                <div class="card-body ">
-                    <div class="col-sm">
-                        <div class="row ">
-                            <div class="col-sm-auto">
-                                <div class="card ">
-                                    <div class="card-header" style="background: white;">
-                                        <div class="font-weight-bold">
-                                            Informacion Escolar
+                <div class="card-body align-items-center d-flex justify-content-center">
+                    <div *ngIf="spiner" class="spinner-grow" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div *ngIf="config.user === 'Alumno'" class="text-center ">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="row">
+                                    <div class="col-sm-auto">
+                                        <div class="card " style="min-height: 350px; min-width: 300px;">
+                                            <div class="card-header" style="background: white;">
+                                                <div class="font-weight-bold">
+                                                    Informacion Escolar
+                                                </div>
+                                            </div>
+                                            <div class="card-body ">
+                                                <div class="col-sm font-weight-light">
+                                                    <div class="row">
+                                                        <div class="col-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold ">Carrera:</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <div class="text-left">
+                                                                {{alumn.carrera}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold">Plan de estudios: </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                {{alumn.plan_estudio}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold">Módulo de Especialidad: </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                {{alumn.mod_especialidad}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold">Situación de Vigencia: </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                {{alumn.sit_vigencia}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold">Promedio: </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                {{alumn.promedio}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold">Créditos Acumulados: </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                {{alumn.creditos_acumulados}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold">Periodo de Ingreso: </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                {{alumn.periodo_ingreso}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold">Número de Periodos Convalidados: </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                {{alumn.periodo_convalidado}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold">Periodo Actual o Último: </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                {{alumn.periodo_actual_ultimo}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold">Tutor: </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                {{alumn.tutor}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="card-body ">
-                                        <div class="col-sm font-weight-light">
-                                            <div class="row">
-                                                <div class="col-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold ">Carrera:</div>
+                                    <div class="col-sm">
+                                        <div class="row">
+                                            <div class="card " style="min-height: 350px; min-width: 500px;">
+                                                <div class="card-header" style="background: white;">
+                                                    <div class="font-weight-bold">
+                                                        Informacion Escolar
                                                     </div>
                                                 </div>
-                                                <div class="col-auto">
-                                                    <div class="text-left">
-                                                        (11) ING. SIST. COMP.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">Plan de estudios: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        (f) ISIC-2010-224 DE 260 CRÉDITOS
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">Módulo de Especialidad: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        (2) INGENIERIA DE SOFTWARE
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">Situación de Vigencia: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        VIGENTE
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">Promedio: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        87
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">Créditos Acumulados: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        241
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">Periodo de Ingreso: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        (2143) 2143 AGODIC2014
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">Número de Periodos Convalidados: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        0
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">Periodo Actual o Último: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        Semestre 11 (2193) AGO-DIC 19
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">Tutor: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        CARMEN JOEL VELAZQUEZ BAZUA
+                                                <div class="card-body ">
+                                                    <div class="col-sm font-weight-light">
+                                                        <div class="row">
+                                                            <div class="col-auto">
+                                                                <div class="text-left">
+                                                                    <div class="font-weight-bold">CURP:</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <div class="text-left">
+                                                                    {{alumn.curp}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-auto">
+                                                                <div class="text-left">
+                                                                    <div class="font-weight-bold">Fecha de Nacimiento: </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-auto">
+                                                                <div class="text-left">
+                                                                    {{alumn.fecha_naci}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-auto">
+                                                                <div class="text-left">
+                                                                    <div class="font-weight-bold">Dirección: </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-auto">
+                                                                <div class="text-left">
+                                                                    {{alumn.direccion}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-auto">
+                                                                <div class="text-left">
+                                                                    <div class="font-weight-bold">Teléfono Domicilio: </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-auto">
+                                                                <div class="text-left">
+                                                                    {{alumn.telefono}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-auto">
+                                                                <div class="text-left">
+                                                                    <div class="font-weight-bold">Celular: </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-auto">
+                                                                <div class="text-left">
+                                                                    {{alumn.telefono}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-auto">
+                                                                <div class="text-left">
+                                                                    <div class="font-weight-bold">E-Mail: </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-auto">
+                                                                <div class="text-left">
+                                                                    {{alumn.correo}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-auto">
+                                                                <div class="text-left">
+                                                                    <div class="font-weight-bold">Escuela de Procedencia: </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-auto">
+                                                                <div class="text-left">
+                                                                    {{alumn.escuela_procedencia}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -151,106 +270,170 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm">
-                                <div class="card ">
-                                    <div class="card-header" style="background: white;">
-                                        <div class="font-weight-bold">
-                                            Informacion Escolar
-                                        </div>
-                                    </div>
-                                    <div class="card-body ">
-                                        <div class="col-sm font-weight-light">
-                                            <div class="row">
-                                                <div class="col-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">CURP:</div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="text-left">
-                                                        VEQJ960608HSLLXL08
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">Fecha de Nacimiento: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        1996-08-06
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">Dirección: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        AGUA COLORADA 3506 PROGRESO CULIACAN CP 80197
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">Teléfono Domicilio: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        7448496
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">Celular: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        6671383186
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">E-Mail: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        LEOJ_ALBERTO@HOTMAIL.COM
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        <div class="font-weight-bold">Escuela de Procedencia: </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-auto">
-                                                    <div class="text-left">
-                                                        (117) UAS (DR. SALVADOR ALLENDE), (25006) CULIACAN
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="config.user === 'Asesor'" class="card " style="background: #FAF6F6;">
+                <div class="card-header" style="background: white;">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h4>
+                                Informacion de usuario
+                            </h4>
+                            <div>
+                                {{asesor.nombre}} {{asesor.apellido}}
                             </div>
                         </div>
+                    </div>
+                </div>
+                <br>
+                <div class="text-center">
+                    <img src="../../../assets/images/blank_avatar.png" style="width: 18rem; background: white;" class="img-fluid border border-dark  rounded-circle" alt="...">
+
+                </div>
+                <div class="card-body align-items-center d-flex justify-content-center">
+                    <div *ngIf="spiner" class="spinner-grow" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="text-center ">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="row">
+                                    <div class="col-sm-auto">
+                                        <div class="card " style="min-height: 350px; min-width: 370px;">
+                                            <div class="card-header" style="background: white;">
+                                                <div class="font-weight-bold">
+                                                    Informacion Escolar
+                                                </div>
+                                            </div>
+                                            <div class="card-body ">
+                                                <div class="col-sm font-weight-light">
+                                                    <div class="row">
+                                                        <div class="col-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold ">Numero de control:</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <div class="text-left">
+                                                                {{asesor.idAsesor}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold">Correo: </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                {{asesor.correo_electronico}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold">Telefono: </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                {{asesor.telefono}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="config.user === 'Encargado de residencias'" class="card " style="background: #FAF6F6;">
+                <div class="card-header" style="background: white;">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h4>
+                                Informacion de usuario
+                            </h4>
+                            <div>
+                                {{encargado.nombre}} {{encargado.apellido}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="text-center">
+                    <img src="../../../assets/images/blank_avatar.png" style="width: 18rem; background: white;" class="img-fluid border border-dark  rounded-circle" alt="...">
+
+                </div>
+                <div class="card-body align-items-center d-flex justify-content-center">
+                    <div *ngIf="spiner" class="spinner-grow" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="text-center ">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="row">
+                                    <div class="col-sm-auto">
+                                        <div class="card " style="min-height: 350px; min-width: 370px;">
+                                            <div class="card-header" style="background: white;">
+                                                <div class="font-weight-bold">
+                                                    Informacion Escolar
+                                                </div>
+                                            </div>
+                                            <div class="card-body ">
+                                                <div class="col-sm font-weight-light">
+                                                    <div class="row">
+                                                        <div class="col-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold ">Numero de control:</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <div class="text-left">
+                                                                {{encargado.idadmin}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                <div class="font-weight-bold">Nombre: </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-auto">
+                                                            <div class="text-left">
+                                                                {{encargado.nombre}} {{encargado.apellido}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>

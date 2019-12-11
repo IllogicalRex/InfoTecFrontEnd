@@ -31,15 +31,13 @@
                        
                         </select>
                       </div>
-                    <div class="form-group files" (change)="handleFileInput($event.target.files)">
-
-                        <input type="file" class="form-control" >
-                                    <button (click)="uploadFiles(tipo,estado,comentarioAsesor,comentarioEncargado)">
-                                        Subir documento
-                                    </button>
-                    </div>
-
-
+                      <div class="form-group">
+                                 
+                          <input type="file" class="form-control" (change)="handleFileInput($event.target.files)">
+                     </div>
+                          <button (click)="uploadFiles(tipo,estado,comentarioAsesor,comentarioEncargado);" >
+                              Subir documento
+                          </button>
                     <div class="form-group" *ngIf="estado==4">
                             <label for="exampleFormControlTextarea1">Escribir comentario</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  (change)="setComentarioEncargado(comentario.value)"#comentario></textarea>

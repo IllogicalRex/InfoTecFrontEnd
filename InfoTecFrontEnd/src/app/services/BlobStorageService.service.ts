@@ -50,7 +50,6 @@ export class BlobStorageService {
   }
 
   addFileToDataBase(document: any) {
-    console.log(document)
     return this.blobStorageService.post(this.URL + 'document', document);
   }
   updateFileToDataBase(document: any) {

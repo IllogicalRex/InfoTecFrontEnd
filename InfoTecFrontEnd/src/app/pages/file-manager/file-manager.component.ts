@@ -53,19 +53,19 @@ export class FileManagerComponent implements OnInit {
   }
 //Elimina un archivo
   deleteFile(fileName: any){
-    return Swal.fire({
-      title: 'Reenviar archivo',
-      text: 'Seguro que desea enviar archivo?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes'
-    }).then((res)=>{
-      if (res.value) {
-        console.log(this.id.userName)
+  //   return Swal.fire({
+  //     title: 'Reenviar archivo',
+  //     text: 'Seguro que desea enviar archivo?',
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Yes'
+  //   }).then((res)=>{
+  //     if (res.value) {
+  //       console.log(this.id.userName)
         return this.blobStorageService.deleteFile(fileName).subscribe(()=>this.getDocumentoAlumnoAsesor(this.id.userName))
-      }
+    //   }
       
-    })
+    // })
   }
   getDocumentoAlumnoAsesor(id){
 
@@ -121,14 +121,14 @@ export class FileManagerComponent implements OnInit {
   }
 
   onUploadFiles() {  
-    if (this.fileUpoadInitiated) {  
-      return;  
-    }  
-    this.fileUpoadInitiated = true;  
-    if (this.fileToUpload == undefined) {  
-      this.fileUpoadInitiated = false;  
-      return false;  
-    } else {
+    // if (this.fileUpoadInitiated) {  
+    //   return;  
+    // }  
+    // this.fileUpoadInitiated = true;  
+    // if (this.fileToUpload == undefined) {  
+    //   this.fileUpoadInitiated = false;  
+    //   return false;  
+    // } else {
       return  this.blobStorageService.insertFile(this.fileToUpload).subscribe(()=>{
         Swal.fire({
           title: 'Archivo enviado!',
@@ -137,7 +137,7 @@ export class FileManagerComponent implements OnInit {
           confirmButtonText: 'Ok'
         })
       });
-    }
+    // }
   }
 
   setTipo(value){

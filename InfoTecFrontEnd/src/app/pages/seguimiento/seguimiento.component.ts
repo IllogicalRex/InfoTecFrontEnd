@@ -1,7 +1,6 @@
 import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { BlobStorageService } from '../../services/BlobStorageService.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import Swal from 'sweetalert2'
 @Component({
   selector: 'app-seguimiento',
@@ -17,6 +16,7 @@ export class SeguimientoComponent implements OnInit {
   fileUpoadInitiated: boolean;  
   fileDownloadInitiated: boolean; 
   documents: any;
+  documents2: any;
   user = JSON.parse(localStorage.getItem('token'));
   extn:any;
   statusAceptacion:any=1;
@@ -32,23 +32,61 @@ export class SeguimientoComponent implements OnInit {
   Aprobado: any=3;
   Rechazado: any=4;
   documentRechazado: any;
+  algo:any;
 
   constructor(public blobStorageService: BlobStorageService,
-              public fileService: FileUploadService) { 
+             ) { 
                 this.documents={
-                  idtipo:0
-                }
+                 idtipo:0,
+                 
+               }
+               this.documentRechazado={
+                idEstatus:0,
+                
+              }
               }
   ngOnInit() {
-
+ 
     let id= JSON.parse(localStorage.getItem("token"));
     this.getDocument(id.userName);
+
   }
+  
+  getDocument(numControl){
+ 
+    return this.blobStorageService.getDocument(numControl).subscribe((res:any)=>{
+         let algo=res;
+         algo.map((res:any)=>{
+           if(res.idEstatus!=3){
+            
+             if(res.idtipo){
+               this.documents=res;
+               // return res;
+             }
+           
+           }
+           if(res.idEstatus==3){
+           
+              this.documents={
+                 idtipo:res.idtipo+1,
+                 idEstatus:1
+               };
+         
+            }
+            if(res.idEstatus==4){
+             this.documentRechazado=res;
+            
+           }
+     })
+    // this.documents=res
+     });
+     
+
+ }
   //maneja el tipo de archivo
   handleFileInput(files: any) {  
      this.extn = files[0].name.split(".").pop();
     this.loadedFile = files;
-    console.log( this.loadedFile)
 
   }  
   // sube el archivo
@@ -92,10 +130,10 @@ export class SeguimientoComponent implements OnInit {
           confirmButtonText: 'Ok'
         });
         this.loadedFile = null;
-        console.log( this.loadedFile)
+        
         this.getDocument(document.AlumnId)
         
-           return res;
+          //  return res;
     });
   }
   else{
@@ -111,35 +149,15 @@ export class SeguimientoComponent implements OnInit {
 
   }
 
-  getDocument(numControl){
-    this.blobStorageService.getDocument(numControl).subscribe((res:any)=>{
-        res.map((res: any)=>{
-          if(res.idEstatus!=3){
-           
-            if(res.idtipo){
-              this.documents=res;
-            }
-          
-          }
-          if(res.idEstatus==3){
-            this.documents={
-              idtipo:res.idtipo+1,
-              idEstatus:1
-            };
-          
-           }
-           if(res.idEstatus==4){
-            this.documentRechazado=res;
-           
-          }
-        })
-      });
-  }
 
+getDocumentos(res){
+
+}
   showComments(){
     Swal.fire(
       'Comentario',
-      this.documentRechazado.comentarioAsesor
+      this.documentRechazado.comentarioAsesor,
+      this.documentRechazado.comentarioAdmRes
     )
   }
 }

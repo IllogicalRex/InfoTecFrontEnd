@@ -26,6 +26,7 @@ export class UserLoginComponent implements OnInit {
   }
 
   Login() {
+    console.log(this.userType);
     if ( this.userType === 'Alumno' ) {
       this.userLogin.LoginUserAlumn(this.user).subscribe((res: any) => {
         this.isAutenticated();
@@ -59,5 +60,9 @@ export class UserLoginComponent implements OnInit {
   }
   typeUser(event) {
     console.log(this.userType);
+  }
+
+  validated(val: boolean) {
+    this.isUnauthorized = val;
   }
 }

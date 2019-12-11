@@ -51,12 +51,20 @@ export class ProjectBankComponent implements OnInit {
     };
     this.projectBankService.projectSubscription(project).subscribe((res: ProjectModel) => {
       this.projectRes = res;
-      Swal.fire(
-        'Subscripcion exitosa',
-        '',
-        'success'
-      );
-      this.router.navigate(['/user']);
+      if (res) {
+        Swal.fire(
+          'Subscripcion exitosa',
+          '',
+          'success'
+        );
+        this.router.navigate(['/user']);
+      } else {
+        Swal.fire(
+          'Subscripción fallida',
+          'No cuentas con los créditos suficientes para subscribirte a un proyecto',
+          'error'
+        );
+      }
      // this.ngOnInit();
     });
 

@@ -4,13 +4,13 @@
             <h5> Seguimiento</h5> 
         </div>
 
-        <table class="table table-responsive-sm">
+        <table class="table col-auto">
                 <thead>
                   <tr>
-                    <th scope="col">Tipo de documento</th>
-                    <th scope="col">Subir archivo</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Comentarios</th>
+                    <th scope="col-auto">Tipo de documento</th>
+                    <th scope="col-auto">Subir archivo</th>
+                    <th scope="col-auto">Estado</th>
+                    <th scope="col-auto">Comentarios</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -24,11 +24,11 @@
                             <div class="form-inline" *ngIf="statusAceptacion==documents.idtipo; else AceptacionFalseArchivo">
                                     <div class="form-group">
                                     
-                                        <div class="col" (change)="handleFileInput($event.target.files)">
+                                        <div class="col-auto" (change)="handleFileInput($event.target.files)">
                                             <input type="file" class="form-control" >
                                            
                                         </div>
-                                        <div class="col">
+                                        <div class="col-auto">
                                                 <button (click)="uploadFiles(1,2);">
                                                         Subir documento
                                                 </button>
@@ -41,11 +41,11 @@
                                                 <label >Entrega de carta de Aceptacion</label>
                                                 <div class="form-group">
                                                 
-                                                        <div class="col" (change)="handleFileInput($event.target.files)">
+                                                        <div class="col-auto" (change)="handleFileInput($event.target.files)">
                                                                 <input type="file" class="form-control" >
                                                                
                                                             </div>
-                                                            <div class="col">
+                                                            <div class="col-auto">
                                                                     <button (click)="uploadFiles(1,2);">
                                                                             Subir documento
                                                                     </button>
@@ -54,12 +54,13 @@
                                                 </div>
                                             </div>
                                         <fieldset *ngIf="documents.idtipo!=0" disabled>
-                                        <div class="form-row">
-                                                <div class="col" (change)="handleFileInput($event.target.files)">
+                                        <div class="form-row col-auto">
+                                            
+                                                <div class="col-auto" (change)="handleFileInput($event.target.files)">
                                                         <input type="file" class="form-control" >
                                                        
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col-auto">
                                                             <button (click)="uploadFiles(1,2);">
                                                                     Subir documento
                                                             </button>
@@ -98,7 +99,17 @@
                                       </ng-template>
                     </td>
                     <td>
-                         Comentarios  
+                            <div class="form-inline" *ngIf="statusAceptacion==documents.idtipo && documents.idEstatus==4; else AceptacionFalseComents">
+                                    <div class="form-inline" *ngIf="documents.idtipo==0">     
+                                            <button  type="button" class="btn btn-primary" (click)="showComments()">
+                                                    Ver Comentario
+                                            </button>
+                                    </div>
+                        </div>
+                        <ng-template #AceptacionFalseComents>
+                            <p>Sin comentarios</p>
+                        </ng-template>
+                    
                     </td>
                   </tr>
                   <!--  -->
@@ -111,45 +122,45 @@
                       <td>
                          
                             <div class="form-inline" *ngIf="statusAnte==documents.idtipo; else AnteFalseArchivo">
-                                    <div class="form-row">
-                                            <div class="col-sm">
+                                    <div class="form-row col-auto">
+                                            <div class="col-auto">
                                                 <p>Anteproyecto</p>
                                                 <div class="form-group">
-                                                        <div class="col-sm" (change)="handleFileInput($event.target.files)">
+                                                        <div class="col-auto" (change)="handleFileInput($event.target.files)">
                                                                 <input type="file" class="form-control" >
                                                               
                                                             </div>
-                                                            <div class="col-sm">
+                                                            <div class="col-auto">
                                                                     <button (click)="uploadFiles(2,2);">
                                                                             Subir documento
                                                                         </button>
                                                             </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm">
+                                            <div class="col-auto">
                                                 <p>Cronograma</p>
                                                 <div class="form-group">
-                                                        <div class="col-sm" (change)="handleFileInput($event.target.files)">
+                                                        <div class="col-auto" (change)="handleFileInput($event.target.files)">
                                                                 <input type="file" class="form-control" >
                                                               
                                                             </div>
-                                                            <div class="col-sm">
+                                                            <div class="col-auto">
                                                                     <button (click)="uploadFiles(2,2);">
                                                                             Subir documento
                                                                         </button>
                                                             </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm">
+                                            <div class="col-auto">
                                                 <p>
                                                     Carta aceptacion sellada
                                                 </p>
                                                 <div class="form-group">
-                                                        <div class="col-sm" (change)="handleFileInput($event.target.files)">
+                                                        <div class="col-auto" (change)="handleFileInput($event.target.files)">
                                                                 <input type="file" class="form-control" >
                                                               
                                                             </div>
-                                                            <div class="col-sm">
+                                                            <div class="col-auto">
                                                                     <button (click)="uploadFiles(2,2);">
                                                                             Subir documento
                                                                         </button>
@@ -161,21 +172,21 @@
                             </div>
                             <ng-template #AnteFalseArchivo>
                                 <fieldset disabled>
-                                <div class="form-inline" >
+                             
                                         
-                                        <div class="form-row">
-                                                <div class="col" (change)="handleFileInput($event.target.files)">
+                                        <div class="form-row col-auto">
+                                                <div class="col-auto" (change)="handleFileInput($event.target.files)">
                                                     <input type="file" class="form-control" >
                                                   
                                                 </div>
-                                                <div class="col">
+                                                <div class="col-auto">
                                                         <button (click)="uploadFiles(2,2);">
                                                                 Subir documento
                                                             </button>
                                                 </div>
                                             </div>
                                     
-                                </div>
+                                
                              
                                     </fieldset>
                               </ng-template>
@@ -213,7 +224,19 @@
                                 </ng-template>
                             
                       </td>
-                      <td></td>
+                      <td>
+                            <div class="form-inline" *ngIf="statusAnte==documents.idtipo && documentRechazado.idEstatus==4; else AnteFalseComents">
+                                    
+                                            <button  type="button" class="btn btn-primary" (click)="showComments()">
+                                                    Ver Comentario
+                                            </button>
+                                   
+                        </div>
+                        <ng-template #AnteFalseComents>
+                            <p>Sin comentarios</p>
+                        </ng-template>
+                    
+                      </td>
                   </tr>
                 <!--  PRIMER REPORTE-->
 
@@ -224,15 +247,15 @@
                       </td>
                       <td>
                             <div class="form-inline " *ngIf="statusPrimer==documents.idtipo; else PrimerFalseArchivo">
-                               <div class="form-row ">
-                                   <div class="col-sm ">
+                               <div class="form-row col-auto">
+                                   <div class="col-auto ">
                                         <div class="text-left">Reporte #1</div>
                                         <div class="form-group">
-                                            <div class="col-sm">
+                                            <div class="col-auto">
 
                                                 <input (change)="handleFileInput($event.target.files)" type="file" class="form-control" >
                                             </div>
-                                            <div class="col-sm">
+                                            <div class="col-auto">
                                                     <button (click)="uploadFiles(3,2);" disable>
                                                             Subir documento
                                                         </button>
@@ -240,28 +263,28 @@
                                         </div>
 
                                    </div>
-                                   <div class="col-sm">
+                                   <div class="col-auto">
                                         <div class="text-left" >Cronograma #1</div>
                                        <div class="form-group">
-                                            <div class="col-sm">
+                                            <div class="col-auto">
 
                                                 <input (change)="handleFileInput($event.target.files)" type="file" class="form-control" >
                                             </div>
-                                            <div class="col-sm">
+                                            <div class="col-auto">
                                                     <button (click)="uploadFiles(3,2);" disable>
                                                             Subir documento
                                                         </button>
                                             </div>
                                         </div>
                                    </div>
-                                   <div class="col-sm">
+                                   <div class="col-auto">
                                         <div class="text-left">Registro asesorias #1</div>
                                         <div class="form-group">
-                                            <div class="col">
+                                            <div class="col-auto">
 
                                                 <input (change)="handleFileInput($event.target.files)" type="file" class="form-control" >
                                             </div>
-                                            <div class="col">
+                                            <div class="col-auto">
                                                     <button (click)="uploadFiles(3,2);" disable>
                                                             Subir documento
                                                         </button>
@@ -274,20 +297,22 @@
                                 </div>
                                 <ng-template #PrimerFalseArchivo>
                                         <fieldset disabled>
-                                            <div class="form-inline ">
+                                          
                                                   
-                                                <div class="form-group mb-2">
+                                                <div class="form-row col-auto">
                                                 
-                                                    <div class="form-group files" (change)="handleFileInput($event.target.files)">
-                                                        <input type="file" class="form-control" disable>
-                                                        <button (click)="uploadFiles(3,2);" disable>
-                                                            Subir documento
-                                                        </button>
-                                                    </div>
-                        
-                                                    
+                                                        <div class="col-auto">
+                                                                <input type="file" class="form-control" (change)="handleFileInput($event.target.files)">
+
+                                                        </div>
+                                                        <div class="col-auto">
+                                                                <button (click)="uploadFiles(3,2);" disable>
+                                                                        Subir documento
+                                                                    </button>
+                                                        </div>
+                         
                                                 </div>
-                                            </div>
+                                       
                                         </fieldset>
                                         </ng-template>
                                
@@ -322,6 +347,18 @@
                                     </ng-template>
 
                       </td>
+                      <td>
+                            <div class="form-inline" *ngIf="statusPrimer==documents.idtipo && documentRechazado.idEstatus==4; else PrimerFalseComents">
+                                    
+                                    <button  type="button" class="btn btn-primary" (click)="showComments()">
+                                            Ver Comentario
+                                    </button>
+                           
+                </div>
+                <ng-template #PrimerFalseComents>
+                    <p>Sin comentarios</p>
+                </ng-template>
+                      </td>
                   </tr>
                   <!--  -->
                 <!--  Segundo REPORTE-->
@@ -332,43 +369,43 @@
                         </td>
                         <td>
                                 <div class="form-inline" *ngIf="statusSegundo==documents.idtipo; else SegundoFalseArchivo">
-                                        <div class="form-row">
-                                            <div class="col-sm">
+                                        <div class="form-row col-auto">
+                                            <div class="col-auto">
                                                 <p>Reporte #2</p>
                                                 <div class="form-group">
-                                                        <div class="col-sm">
+                                                        <div class="col-auto">
                                                           <input type="file" class="form-control"  (change)="handleFileInput($event.target.files)">
                                                                  
                                                         </div>
-                                                        <div class="col-sm">
+                                                        <div class="col-auto">
                                                                 <button (click)="uploadFiles(4,2);">
                                                                         Subir documento
                                                                     </button>
                                                         </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm">
+                                            <div class="col-auto">
                                                 <p>Cronograma #2</p>
                                                 <div class="form-group">
-                                                        <div class="col-sm">
+                                                        <div class="col-auto">
                                                           <input type="file" class="form-control"  (change)="handleFileInput($event.target.files)">
                                                                  
                                                         </div>
-                                                        <div class="col-sm">
+                                                        <div class="col-auto">
                                                                 <button (click)="uploadFiles(4,2);">
                                                                         Subir documento
                                                                     </button>
                                                         </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm">
+                                            <div class="col-auto">
                                                 <p>Registro de asesoria #2</p>
                                                 <div class="form-group">
-                                                        <div class="col-sm">
+                                                        <div class="col-auto">
                                                           <input type="file" class="form-control"  (change)="handleFileInput($event.target.files)">
                                                                  
                                                         </div>
-                                                        <div class="col-sm">
+                                                        <div class="col-auto">
                                                                 <button (click)="uploadFiles(4,2);">
                                                                         Subir documento
                                                                     </button>
@@ -381,28 +418,25 @@
 
                                     <ng-template #SegundoFalseArchivo>
                                     <fieldset disabled>
-                                        <div class="form-inline ">
-                                              <div class="form-row">
-                                                    <div class="form-group">
-                                                       <div class="col">
-                                                           <input type="file" class="form-control" (change)="handleFileInput($event.target.files)" >
-
-                                                       </div>
-                                                        <button (click)="uploadFiles(4,2);">
-                                                                 Subir documento
-                                                         </button>
-                                                                    
-                                                    
-                                                    </div>
+                                           
+                                            <div class="form-row col-auto">
                                                 
+                                                    <div class="col-auto">
+                                                            <input type="file" class="form-control" (change)="handleFileInput($event.target.files)">
+
+                                                    </div>
+                                                    <div class="col-auto">
+                                                            <button (click)="uploadFiles(4,2);" disable>
+                                                                    Subir documento
+                                                                </button>
+                                                    </div>
+                     
                                             </div>
-                                            
-                                        </div>
                                     </fieldset>
                                  </ng-template>
                         </td>
                         <td>
-                             <div class="form-inline" *ngIf="statusSegundo==documents.idtipo; else SegundoFalse">
+                             <div class="form-inline" *ngIf="statusSegundo==documents.idtipo;  else SegundoFalse">
                                  <div *ngIf="porAprobar==documents.idEstatus" class="alert alert-warning" role="alert">
                                                 Archivo por enviar
                                 </div>
@@ -430,7 +464,18 @@
                                     </ng-template>
 
                         </td>
-                        <td>Comentarios</td>
+                        <td>
+                                <div class="form-inline" *ngIf="statusSegundo==documents.idtipo && documentRechazado.idEstatus==4; else SegundoFalseComents">
+                                    
+                                        <button  type="button" class="btn btn-primary" (click)="showComments()">
+                                                Ver Comentario
+                                        </button>
+                               
+                    </div>
+                    <ng-template #SegundoFalseComents>
+                        <p>Sin comentarios</p>
+                    </ng-template>
+                        </td>
                     </tr>
                         <!--  TERCER REPORTE-->
 
@@ -441,45 +486,45 @@
                     </td>
                     <td>
                             <div class="form-inline" *ngIf="statusTercer==documents.idtipo; else TercerFalseArchivo">
-                                    <div class="form-row">
-                                        <div class="col-sm">
+                                    <div class="form-row col-auto">
+                                        <div class="col-auto">
                                             <p>Reporte #3</p>
                                             <div class="form-group">
-                                                    <div class="col-sm">
+                                                    <div class="col-auto">
                                                       <input type="file" class="form-control"  (change)="handleFileInput($event.target.files)">
                                                              
                                                     </div>
-                                                    <div class="col-sm">
+                                                    <div class="col-auto">
                                                             <button (click)="uploadFiles(5,2);">
                                                                     Subir documento
                                                                 </button>
                                                     </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm">
+                                        <div class="col-auto">
                                             <p>Cronograma #3</p>
                                             <div class="form-group">
-                                                    <div class="col-sm">
+                                                    <div class="col-auto">
                                                       <input type="file" class="form-control"  (change)="handleFileInput($event.target.files)">
                                                              
                                                     </div>
-                                                    <div class="col-sm">
+                                                    <div class="col-auto">
                                                             <button (click)="uploadFiles(5,2);">
                                                                     Subir documento
                                                                 </button>
                                                     </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm">
+                                        <div class="col-auto">
                                             <p>
                                                 Revision de asesorias #3
                                             </p>
                                             <div class="form-group">
-                                                    <div class="col-sm">
+                                                    <div class="col-auto">
                                                       <input type="file" class="form-control"  (change)="handleFileInput($event.target.files)">
                                                              
                                                     </div>
-                                                    <div class="col-sm">
+                                                    <div class="col-auto">
                                                             <button (click)="uploadFiles(5,2);">
                                                                     Subir documento
                                                                 </button>
@@ -492,23 +537,20 @@
                 
                                 <ng-template #TercerFalseArchivo>
                                 <fieldset disabled>
-                                    <div class="form-inline ">
-                
-                                        <div class="form-row">
-                                        
-                                            <div class="form-group" (change)="handleFileInput($event.target.files)">
-                                                <div class="col">
+                                       
+                                        <div class="form-row col-auto">
+                                                
+                                                <div class="col-auto">
+                                                        <input type="file" class="form-control" (change)="handleFileInput($event.target.files)">
 
-                                                    <input type="file" class="form-control" >
                                                 </div>
-                                                <button (click)="uploadFiles(5,2);" >
-                                                    Subir documento
-                                                </button>
-                                            </div>
-                                            
+                                                <div class="col-auto">
+                                                        <button (click)="uploadFiles(5,2);" disable>
+                                                                Subir documento
+                                                            </button>
+                                                </div>
+                 
                                         </div>
-                                      
-                                    </div>
                                 </fieldset>
                                 </ng-template>
                     </td>
@@ -545,7 +587,18 @@
                                 </fieldset>
                                 </ng-template>
                     </td>
-                    <td></td>
+                    <td>
+                            <div class="form-inline" *ngIf="statusTercer==documents.idtipo && documentRechazado.idEstatus==4; else TercerFalseComents">
+                                    
+                                    <button  type="button" class="btn btn-primary" (click)="showComments()">
+                                            Ver Comentario
+                                    </button>
+                           
+                </div>
+                <ng-template #TercerFalseComents>
+                    <p>Sin comentarios</p>
+                </ng-template>
+                    </td>
                 </tr>
                 <!--  -->
             <!--  CIERRE DE RESIDENCIAS-->
@@ -577,22 +630,20 @@
                         
                                     <ng-template #EvaFalseArchivo>
                                     <fieldset disabled>
-                                        <div class="form-inline ">
-                                            
-                                            <div class="form-row">
-                                                <div class="form-group" (change)="handleFileInput($event.target.files)">
-                                                   <div class="col">
-
-                                                       <input type="file" class="form-control" disable>
-                                                   </div>
-                                                    <button (click)="uploadFiles(6,2);" disable>
-                                                        Subir documento
-                                                    </button>
-                                                </div>
+                                           
+                                            <div class="form-row col-auto">
                                                 
+                                                    <div class="col-auto">
+                                                            <input type="file" class="form-control" (change)="handleFileInput($event.target.files)">
+
+                                                    </div>
+                                                    <div class="col-auto">
+                                                            <button (click)="uploadFiles(6,2);" disable>
+                                                                    Subir documento
+                                                                </button>
+                                                    </div>
+                     
                                             </div>
-                                            
-                                        </div>
                                     </fieldset>
                                     </ng-template>
                         </td>
@@ -628,7 +679,18 @@
                                     </fieldset>
                                     </ng-template>
                         </td>
-                        <td>Comentarios</td>
+                        <td>
+                                <div class="form-inline" *ngIf="statusSeguiRepor==documents.idtipo && documentRechazado.idEstatus==4; else CierreFalseComents">
+                                    
+                                        <button  type="button" class="btn btn-primary" (click)="showComments()">
+                                                Ver Comentario
+                                        </button>
+                               
+                    </div>
+                    <ng-template #CierreFalseComents>
+                        <p>Sin comentarios</p>
+                    </ng-template>
+                        </td>
                     </tr>
                     <!--  -->
                 </tbody>

@@ -31,6 +31,7 @@ export class SeguimientoComponent implements OnInit {
   enProceso: any=2;
   Aprobado: any=3;
   Rechazado: any=4;
+  documentRechazado: any;
 
   constructor(public blobStorageService: BlobStorageService,
               public fileService: FileUploadService) { 
@@ -114,21 +115,31 @@ export class SeguimientoComponent implements OnInit {
     this.blobStorageService.getDocument(numControl).subscribe((res:any)=>{
         res.map((res: any)=>{
           if(res.idEstatus!=3){
+           
             if(res.idtipo){
-              console.log(res)
               this.documents=res;
             }
-            
+          
           }
           if(res.idEstatus==3){
             this.documents={
               idtipo:res.idtipo+1,
               idEstatus:1
             };
+          
+           }
+           if(res.idEstatus==4){
+            this.documentRechazado=res;
+           
           }
         })
       });
   }
 
-
+  showComments(){
+    Swal.fire(
+      'Comentario',
+      this.documentRechazado.comentarioAsesor
+    )
+  }
 }

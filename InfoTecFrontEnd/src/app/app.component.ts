@@ -8,8 +8,10 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'InfoTecFrontEnd';
-  token: any  = JSON.parse(localStorage.getItem('token'));
+   token: any;
+ // token: any;
   constructor(public router: Router) {
+    this.token = JSON.parse(localStorage.getItem('token'));
     if (!this.token) {
       console.log('entre');
       localStorage.setItem('token', JSON.stringify({ token: 'Unauthorized', user: '', userName: '', subscriptionStatus: 'vacio' }));

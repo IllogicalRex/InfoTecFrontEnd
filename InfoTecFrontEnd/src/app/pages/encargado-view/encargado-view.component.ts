@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 @Component({
   selector: 'app-encargado-view',
   templateUrl: './encargado-view.component.html',
-  // styleUrls: ['./encargado-view.component.css']
+   styleUrls: ['./encargado-view.component.css']
 })
 export class EncargadoViewComponent implements OnInit {
   

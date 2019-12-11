@@ -16,7 +16,7 @@ export class EncargadoService {
   constructor(public http: HttpClient) { }
 
   getEncargado(id: string) {
-    return this.http.get(this.URL + 'encargado/' + id);
+    return this.http.get(this.URL + 'admin/' + id);
   }
 
   

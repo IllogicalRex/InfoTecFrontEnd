@@ -1,5 +1,5 @@
 export class EncargadoModel {
-    public  alumnoId: string;
+    public  idadmin: string;
     public  nombre: string;
     public  apellido: string;
     public  telefono: string;

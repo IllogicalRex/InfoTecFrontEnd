@@ -86,7 +86,9 @@ export class EncargadoViewComponent implements OnInit {
         };
         this.deleteFile(res.url);
           this.onUploadFiles();
-          this.blobStorageService.updateFileToDataBase(document).subscribe();
+          this.blobStorageService.updateFileToDataBase(document).subscribe(
+           
+          );
       }
     })
   } else{
@@ -103,14 +105,14 @@ export class EncargadoViewComponent implements OnInit {
   }
 
   onUploadFiles() {  
-    if (this.fileUpoadInitiated) {  
-      return;  
-    }  
-    this.fileUpoadInitiated = true;  
-    if (this.fileToUpload == undefined) {  
-      this.fileUpoadInitiated = false;  
-      return false;  
-    } else {
+    // if (this.fileUpoadInitiated) {  
+    //   return;  
+    // }  
+    // this.fileUpoadInitiated = true;  
+    // if (this.fileToUpload == undefined) {  
+    //   this.fileUpoadInitiated = false;  
+    //   return false;  
+    // } else {
       return  this.blobStorageService.insertFile(this.fileToUpload).subscribe(()=>{
         Swal.fire({
           title: 'Archivo enviado!',
@@ -121,7 +123,7 @@ export class EncargadoViewComponent implements OnInit {
         this.fileToUpload=null;
 
       });
-    }
+    // }
   }
 
   setTipo(value){

@@ -23,6 +23,7 @@
         "bootstrap": "^4.3.1",
         "core-js": "^2.5.4",
         "file-saver": "^2.0.2",
+        "fileupload": "^1.0.0",
         "ngx-bootstrap": "^5.1.2",
         "rxjs": "~6.3.3",
         "sweetalert2": "^9.4.3",

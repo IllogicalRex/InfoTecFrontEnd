@@ -8,20 +8,20 @@
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <label class="input-group-text" for="inputGroupSelect01">Tipo Doc</label>
+                          <label class="input-group-text" for="inputGroupSelect01">Tipo Documento</label>
                         </div>
                         <select class="custom-select" id="inputGroupSelect01" (change)="setTipo(v.value)" #v>
                           <option selected>Seleccione...</option>
                           
-                          <option value="3">Primer Reporte</option>
-                          <option value="3">Cronograma 1</option>
-                          <option value="3">Registro de Asesoria 1</option>
-                          <option value="4">Segundo Reporte</option>
-                          <option value="4">Cronograma 2</option>
-                          <option value="4">Registro de Asesoria 2</option>
-                          <option value="5">Tercer Reporte</option>
-                          <option value="5">Cronograma 3</option>
-                          <option value="5">Registro de Asesoria 3</option>
+                          <option value="3">Reporte #1</option>
+                          <option value="3">Cronograma #1</option>
+                          <option value="3">Registro de Asesoria #1</option>
+                          <option value="4">Reporte #2</option>
+                          <option value="4">Cronograma #2</option>
+                          <option value="4">Registro de Asesoria #2</option>
+                          <option value="5">Reporte #3</option>
+                          <option value="5">Cronograma #3</option>
+                          <option value="5">Registro de Asesoria #3</option>
                           <option value="7">reporte de residencia</option>
                         </select>
                       </div>
@@ -37,13 +37,24 @@
                        
                         </select>
                       </div>
-                    <div class="form-group files" (change)="handleFileInput($event.target.files)">
+                      <div class="form-group">
+                                 
+                                  <input type="file" class="form-control" (change)="handleFileInput($event.target.files)">
+
+                         
+                               
+                        
+                  </div>
+                  <button (click)="uploadFiles(tipo,estado,comentarioAsesor,comentarioEncargado);" >
+                      Subir documento
+                  </button>
+                    <!-- <div class="form-group files" (change)="handleFileInput($event.target.files)">
 
                         <input type="file" class="form-control" >
                                     <button (click)="uploadFiles(tipo,estado,comentarioAsesor,comentarioEncargado);">
                                         Subir documento
                                     </button>
-                    </div>
+                    </div> -->
                     
                     <div class="form-group" *ngIf="estado==4">
                             <label for="exampleFormControlTextarea1">Escribir comentario</label>

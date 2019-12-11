@@ -1,5 +1,4 @@
 <div class="row">
-
     <div class="col-md-3">
         <div class="ibox float-e-margins">
             <div class="ibox-content">
@@ -8,20 +7,15 @@
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <label class="input-group-text" for="inputGroupSelect01">Tipo Documento</label>
+                          <label class="input-group-text" for="inputGroupSelect01">Tipo Doc</label>
                         </div>
-                        <select class="custom-select" id="inputGroupSelect01" (change)="setTipo(v.value)" #v>
+                        <select class="custom-select" id="inputGroupSelect01" (change)="setTipo(m.value)" #m>
                           <option selected>Seleccione...</option>
-                          
-                          <option value="3">Reporte #1</option>
-                          <option value="3">Cronograma #1</option>
-                          <option value="3">Registro de Asesoria #1</option>
-                          <option value="4">Reporte #2</option>
-                          <option value="4">Cronograma #2</option>
-                          <option value="4">Registro de Asesoria #2</option>
-                          <option value="5">Reporte #3</option>
-                          <option value="5">Cronograma #3</option>
-                          <option value="5">Registro de Asesoria #3</option>
+                          <option value="1">Carta Aceptacion</option>
+                          <option value="2">Anteproyecto</option>
+                          <option value="2">Cronograma</option>
+                          <option value="2">Carta sellada</option>
+                          <option value="6">Seguimiento de residencia</option>
                           <option value="7">reporte de residencia</option>
                         </select>
                       </div>
@@ -30,7 +24,7 @@
                         <div class="input-group-prepend">
                           <label class="input-group-text" for="inputGroupSelect02">Estado</label>
                         </div>
-                        <select class="custom-select" id="inputGroupSelect02" (change)="setEstado(k.value)" #k>
+                        <select class="custom-select" id="inputGroupSelect02" (change)="setEstado(n.value)" #n>
                           <option selected>Seleccione...</option>
                           <option value="3">Aprobado</option>
                           <option value="4">Rechazar</option>
@@ -39,27 +33,17 @@
                       </div>
                       <div class="form-group">
                                  
-                                  <input type="file" class="form-control" (change)="handleFileInput($event.target.files)">
-
-                         
-                               
-                        
-                  </div>
-                  <button (click)="uploadFiles(tipo,estado,comentarioAsesor,comentarioEncargado);" >
-                      Subir documento
-                  </button>
-                    <!-- <div class="form-group files" (change)="handleFileInput($event.target.files)">
-
-                        <input type="file" class="form-control" >
-                                    <button (click)="uploadFiles(tipo,estado,comentarioAsesor,comentarioEncargado);">
-                                        Subir documento
-                                    </button>
-                    </div> -->
-                    
+                          <input type="file" class="form-control" (change)="handleFileInput($event.target.files)">
+                     </div>
+                          <button (click)="uploadFiles(tipo,estado,comentarioAsesor,comentarioEncargado);" >
+                              Subir documento
+                          </button>
                     <div class="form-group" *ngIf="estado==4">
                             <label for="exampleFormControlTextarea1">Escribir comentario</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  (change)="setComentarioAsesor(comentario.value)"#comentario></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  (change)="setComentarioEncargado(comentario.value)"#comentario></textarea>
                           </div>
+
+                    
                 </div>
             </div>
         </div>
